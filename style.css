@@ -1,0 +1,18 @@
+.titre {
+  color: green;
+}
+.jeu {
+  width: 100%;
+  height: 80%;
+  background: #222;
+  position: relative;
+}
+.modele {
+  display: none;
+}
+.point {
+  height: 10px;
+  position: absolute;
+  width: 10px;
+  background: green;
+}
