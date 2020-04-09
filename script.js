@@ -1,7 +1,12 @@
 $(document).ready(function () {
   accepterBarreEspacement();
   var jeu = creerNouveauJeu('.jeu');
-  for (i = 0; i < 100; i++) {
+
+  var joueur = creerNouveauPoint(jeu);
+  joueur.placerAleatoire();
+  joueur.devenirJoueur();
+
+  for (i = 0; i < 66; i++) {
     var point = creerNouveauPoint(jeu);
     point.placerAleatoire();
     point.choisirDestination();
@@ -41,6 +46,12 @@ function creerNouveauJeu(selecteur) {
 }
 
 function creerNouveauPoint(jeu) {
+  point = creerPoint(jeu);
+  point.utiliserBalise($('.point.modele').clone().removeClass('modele').attr('data-vitesse', 5));
+  return point;
+}
+
+function creerPoint(jeu) {
   return {
     attente: 1,
 
@@ -48,14 +59,23 @@ function creerNouveauPoint(jeu) {
 
     // objet: $('.point.modele').clone().removeClass('modele').css('background-color', Math.floor(Math.random()*16777215).toString(16)),
 
-    objet: $('.point.modele').clone().removeClass('modele').attr('data-vitesse', 5),
+    objet: false,
 
     jeu: jeu,
 
-    placerAleatoire: function(point) {
+    utiliserBalise: function(balise) {
+      this.objet = balise;
+    },
+
+    placerAleatoire: function() {
       this.objet.appendTo(this.jeu.objet);
       this.objet.css('top', this.jeu.pointVerticalAleatoire());
       this.objet.css('left', this.jeu.pointHorizontalAleatoire());
+    },
+
+    devenirJoueur: function() {
+      this.objet.css('background-color', 'white');
+      this.objet.attr('data-joueur', 'oui');
     },
 
     choisirDestination: function() {
@@ -65,6 +85,11 @@ function creerNouveauPoint(jeu) {
 
     infecter: function(chance) {
       if (Math.random() < chance) {
+        if (this.objet.attr('data-joueur') == 'oui') {
+          $('.point').attr('data-vitesse', 0);
+          alert('VOUS AVEZ PERDU');
+        }
+
         this.objet.css('background-color', 'red');
         this.objet.attr('data-infecte', 'oui');
       }
@@ -75,7 +100,11 @@ function creerNouveauPoint(jeu) {
       var left = this.objet.position().left;
 
       if (this.objet.attr('data-infecte') == 'oui') {
-        utilitaires().trouverVoisins(top, left, this.rayon_infection).css('background-color', 'red').attr('data-infecte', 'oui');
+        utilitaires().trouverVoisins(top, left, this.rayon_infection).each(function() {
+          point = creerPoint(this.jeu);
+          point.utiliserBalise($( this ));
+          point.infecter(100/100);
+        });
       }
     },
 
