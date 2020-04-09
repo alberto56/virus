@@ -5,7 +5,7 @@ $(document).ready(function () {
     var point = creerNouveauPoint(jeu);
     point.placerAleatoire();
     point.choisirDestination();
-    point.infecter(1/100);
+    point.infecter(2/100);
     point.bouger();
   }
 });
