@@ -76,6 +76,10 @@ function creerPoint(jeu) {
     devenirJoueur: function() {
       this.objet.css('background-color', 'white');
       this.objet.attr('data-joueur', 'oui');
+      DevenirControlable( this  ) ;
+
+
+
     },
 
     choisirDestination: function() {
@@ -132,4 +136,33 @@ function creerPoint(jeu) {
     },
 
   };
+}
+
+function DevenirControlable(joueur) {
+      $('body').keyup(function(e){
+        if(e.keyCode == 39){
+          // user has pressed right arrow
+          var left_a = joueur.objet.position().left;
+          var left_b = left_a + 10;
+          joueur.objet.css('left', left_b + 'px');
+        }
+        if(e.keyCode == 37){
+          // user has pressed left arrow
+          var left_a = joueur.objet.position().left;
+          var left_b = left_a - 10;
+          joueur.objet.css('left', left_b + 'px');
+        }
+        if(e.keyCode == 38){
+          // user has pressed up arrow
+          var top_a = joueur.objet.position().top;
+          var top_b = top_a - 10;
+          joueur.objet.css('top', top_b + 'px');
+        }
+        if(e.keyCode == 40){
+          // user has pressed down arrow
+          var top_a = joueur.objet.position().top;
+          var top_b = top_a + 10;
+          joueur.objet.css('top', top_b + 'px');
+        }
+      });
 }
