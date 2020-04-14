@@ -16,3 +16,9 @@
   width: 10px;
   background: green;
 }
+.infos {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+}

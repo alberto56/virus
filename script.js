@@ -35,6 +35,10 @@ function creerNouveauJeu(selecteur) {
   return {
     objet: $('.jeu.modele').clone().removeClass('modele').appendTo('body'),
 
+    jeuInterne: function() {
+      return this.objet.find('.jeu-interne');
+    },
+
     pointVerticalAleatoire: function() {
       return parseInt(Math.random() * this.objet.height());
     },
@@ -68,7 +72,7 @@ function creerPoint(jeu) {
     },
 
     placerAleatoire: function() {
-      this.objet.appendTo(this.jeu.objet);
+      this.objet.appendTo(this.jeu.jeuInterne());
       this.objet.css('top', this.jeu.pointVerticalAleatoire());
       this.objet.css('left', this.jeu.pointHorizontalAleatoire());
     },
@@ -90,12 +94,27 @@ function creerPoint(jeu) {
     infecter: function(chance) {
       if (Math.random() < chance) {
         if (this.objet.attr('data-joueur') == 'oui') {
-          $('.point').attr('data-vitesse', 0);
-          alert('VOUS AVEZ PERDU');
+          if (this.objet.attr('data-invincible') == 'non') {
+            this.objet.attr('data-invincible', 'oui');
+            this.objet.css('background-color', 'blue');
+            var that = this;
+            setTimeout(function() {
+              that.objet.attr('data-invincible', 'non');
+              that.objet.css('background-color', 'white');
+            }, 3000);
+            nombredevies=utilitaires().getNombreVies();
+            utilitaires().setNombreVies(--nombredevies)
+            if (nombredevies==0)  {
+              $('.point').attr('data-vitesse', 0);
+              alert('VOUS AVEZ PERDU');
+              this.objet.attr('data-infecte', 'oui');
+            }
+          }
         }
-
-        this.objet.css('background-color', 'red');
-        this.objet.attr('data-infecte', 'oui');
+        else {
+          this.objet.css('background-color', 'red');
+          this.objet.attr('data-infecte', 'oui');
+        }
       }
     },
 

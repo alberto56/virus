@@ -19,6 +19,14 @@ function utilitaires() {
           $(this).position().left <= left + rayon &&
           $(this).position().left >= left - rayon;
       });
+    },
+
+    getNombreVies: function() {
+      return $('.infos .nombre-de-vies').html();
+    },
+
+    setNombreVies: function(vies) {
+      return $('.infos .nombre-de-vies').html(vies);
     }
   }
 }
