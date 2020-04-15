@@ -91,16 +91,47 @@ function creerPoint(jeu) {
       this.objet.attr('data-dest-h', this.jeu.pointHorizontalAleatoire());
     },
 
+    clignoter: function() {
+      if (this.objet.attr('data-invincible') == 'non') {
+        this.objet.css('background-color', 'white');
+        return;
+      }
+
+      // à ce stade nous sommes invincible.
+
+      if (this.objet.attr('data-clignotement') == 'visible') {
+        this.objet.css('background-color', 'black');
+        this.objet.attr('data-clignotement', 'invisible');
+      }
+      else {
+        this.objet.css('background-color', 'white');
+        this.objet.attr('data-clignotement', 'visible');
+      }
+
+      var that = this;
+      setTimeout(function() {
+        that.clignoter();
+      }, 50);
+    },
+
+    devenirInvincible: function(devenir) {
+      if (devenir) {
+        this.objet.attr('data-invincible', 'oui');
+        this.clignoter();
+      }
+      else {
+        this.objet.attr('data-invincible', 'non');
+      }
+    },
+
     infecter: function(chance) {
       if (Math.random() < chance) {
         if (this.objet.attr('data-joueur') == 'oui') {
           if (this.objet.attr('data-invincible') == 'non') {
-            this.objet.attr('data-invincible', 'oui');
-            this.objet.css('background-color', 'blue');
+            this.devenirInvincible(true);
             var that = this;
             setTimeout(function() {
-              that.objet.attr('data-invincible', 'non');
-              that.objet.css('background-color', 'white');
+              that.devenirInvincible(false);
             }, 3000);
             nombredevies=utilitaires().getNombreVies();
             utilitaires().setNombreVies(--nombredevies)
