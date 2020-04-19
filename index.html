@@ -4,16 +4,29 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="utilitaires.js"></script>
     <script src="jeu.js"></script>
+    <script src="controlleur.js"></script>
     <script src="point.js"></script>
     <script src="script.js"></script>
     <meta charset="UTF-8">
   </head>
   <body>
-    <h1 class="titre">Pandemic II</h1>
-    <div class="point modele" data-infecte="non" data-joueur="non" data-invincible="non"></div>
+    <div class="panneau ecran-de-bienvenue">
+      <h1 class="titre">Virus</h1>
+      <div class="bouton-prochain-niveau">Cliquez ici pour commencer le niveau 1</div>
+    </div>
+    <div class="panneau game-over">
+      <h1 class="titre">GAME OVER</h1>
+      <div class="bouton-prochain-niveau">Cliquez ici pour recommencer au niveau 1</div>
+    </div>
+    <div class="panneau panneau-jeu">
+    </div>
+
+    <!-- ci-dessous nos modèles -->
     <div class="jeu modele">
       <div class="jeu-interne"></div>
-      <div class="infos">Vous avez <span class="nombre-de-vies">3</span> vies</div>
+      <div class="infos">Niveau 1. Vous avez <span class="nombre-de-vies">3</span> vies. Restez en vie <span class="temps-restant">...</span> secondes pour gagner.</div>
     </div>
+
+    <div class="point modele" data-infecte="non" data-joueur="non" data-invincible="non"></div>
   </body>
 </html>

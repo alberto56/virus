@@ -1,6 +1,6 @@
-function creerNouveauJeu(selecteur) {
+function creerNouveauJeu(selecteur, destination = '.panneau-jeu') {
   return {
-    objet: $('.jeu.modele').clone().removeClass('modele').appendTo('body'),
+    objet: $('.jeu.modele').clone().removeClass('modele').appendTo(destination),
 
     jeuInterne: function() {
       return this.objet.find('.jeu-interne');

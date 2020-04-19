@@ -21,12 +21,17 @@ function utilitaires() {
       });
     },
 
-    getNombreVies: function() {
-      return $('.infos .nombre-de-vies').html();
+    getInfo: function(parametre) {
+      return $('.infos .' + parametre).html();
     },
 
-    setNombreVies: function(vies) {
-      return $('.infos .nombre-de-vies').html(vies);
+    setInfo: function(parametre, valeur) {
+      return $('.infos .' + parametre).html(valeur);
+    },
+
+    montrerPanneau: function(panneau) {
+      $('.panneau').hide();
+      $('.' + panneau).show();
     }
   }
 }

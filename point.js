@@ -32,9 +32,11 @@ function creerPoint(jeu) {
       this.objet.css('background-color', 'white');
       this.objet.attr('data-joueur', 'oui');
       this.DevenirControlable() ;
-
-
-
+      this.devenirInvincible(true);
+      var that = this;
+      setTimeout(function() {
+        that.devenirInvincible(false);
+      }, 5000);
     },
 
     /**
@@ -122,12 +124,11 @@ function creerPoint(jeu) {
             setTimeout(function() {
               that.devenirInvincible(false);
             }, 3000);
-            nombredevies=utilitaires().getNombreVies();
-            utilitaires().setNombreVies(--nombredevies)
+            nombredevies=utilitaires().getInfo('nombre-de-vies');
+            utilitaires().setInfo('nombre-de-vies', --nombredevies)
             if (nombredevies==0)  {
               $('.point').attr('data-vitesse', 0);
-              alert('VOUS AVEZ PERDU');
-              this.objet.attr('data-infecte', 'oui');
+              controlleur().gameOver();
             }
           }
         }

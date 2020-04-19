@@ -1,11 +1,24 @@
 .titre {
   color: green;
 }
-.jeu {
+.game-over .titre {
+  color: white;
+}
+.panneau {
   width: 100%;
   height: 80%;
+}
+.jeu {
+  width: 100%;
+  height: 100%;
   background: #222;
   position: relative;
+}
+.ecran-de-bienvenue {
+  background: yellow;
+}
+.game-over {
+  background: green;
 }
 .modele {
   display: none;

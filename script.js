@@ -1,24 +1,19 @@
 $(document).ready(function () {
-  accepterBarreEspacement();
-  var jeu = creerNouveauJeu('.jeu');
-
-  var joueur = creerPoint(jeu);
-  joueur.creerNouveau();
-
-  joueur.placerAleatoire();
-  joueur.devenirJoueur();
-
-  for (i = 0; i < 66; i++) {
-    var point = creerPoint(jeu);
-    point.creerNouveau();
-    point.placerAleatoire();
-    if (!point.infecter(4/100)) {
-      point.devenirAsymptomatique(30/100);
-    }
-    point.choisirDestination();
-    point.bouger();
-  }
+  controlleur().commencerJeu();
 });
+
+function continuerDecompte(secondes) {
+  if ((utilitaires().getInfo("temps-restant"))==(0)) {
+
+  alert ('Vous avez gagné!')
+  return}
+
+  setTimeout(function() {
+    utilitaires().setInfo('temps-restant', --secondes);
+
+    continuerDecompte(secondes);
+  }, 1000);
+}
 
 function accepterBarreEspacement() {
   $('body').keyup(function(e){
