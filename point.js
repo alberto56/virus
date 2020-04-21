@@ -190,7 +190,7 @@ function creerPoint(jeu) {
     },
 
     DevenirControlable: function() {
-          that = this;
+          var that = this;
           $('body').keyup(function(e){
             if(e.keyCode == 39){
               // user has pressed right arrow

@@ -12,7 +12,7 @@ function controlleur() {
       $('.ecran-de-bienvenue .jeu .infos').remove();
       $('.ecran-de-bienvenue .jeu').css('background', 'none');
 
-      that = this;
+      var that = this;
       $('.bouton-prochain-niveau').click(function() {
         $('.ecran-de-bienvenue .jeu').remove();
         that.commencerNiveau(niveau1());
@@ -35,7 +35,7 @@ function controlleur() {
     continuerJeu: function() {
       $('.panneau-jeu .jeu').remove();
       utilitaires().montrerPanneau('prochain-niveau');
-      that = this;
+      var that = this;
       $('.bouton-niveau-suivant').click(function() {
         that.commencerNiveau(niveau2());
       });
@@ -45,7 +45,7 @@ function controlleur() {
       $('.panneau-jeu .jeu').remove();
       utilitaires().montrerPanneau('game-over');
 
-      that = this;
+      var that = this;
       $('.bouton-prochain-niveau').click(function() {
         that.commencerNiveau();
       });
