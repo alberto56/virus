@@ -4,9 +4,9 @@ $(document).ready(function () {
 
 function continuerDecompte(secondes) {
   if ((utilitaires().getInfo("temps-restant"))==(0)) {
-
-  alert ('Vous avez gagné!')
-  return}
+    controlleur().continuerJeu();
+    return;
+  }
 
   setTimeout(function() {
     utilitaires().setInfo('temps-restant', --secondes);

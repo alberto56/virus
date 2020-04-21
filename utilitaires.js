@@ -13,7 +13,7 @@ function utilitaires() {
     },
 
     trouverVoisins: function(top, left, rayon) {
-    return  $('.point[data-infecte=non]').filter(function() {
+      return $('.panneau-jeu .point[data-infecte=non]').filter(function() {
         return $(this).position().top <= top + rayon &&
           $(this).position().top >= top - rayon &&
           $(this).position().left <= left + rayon &&

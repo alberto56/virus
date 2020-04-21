@@ -156,7 +156,8 @@ function creerPoint(jeu) {
       }
     },
 
-    bouger: function() {
+    bouger: function(contexte) {
+
       var top_a = this.objet.position().top;
       var left_a = this.objet.position().left;
       var top_b = this.objet.attr('data-dest-v');
@@ -164,7 +165,7 @@ function creerPoint(jeu) {
 
       if (top_a == top_b && left_a == left_b) {
         this.choisirDestination();
-        this.bouger();
+        this.bouger(contexte);
         return;
       }
 
@@ -173,10 +174,15 @@ function creerPoint(jeu) {
 
       this.infecterVoisins();
 
-      var that = this;
-      setTimeout(function() {
-        that.bouger();
-      }, this.attente);
+      if (contexte.is(":visible")) {
+        var that = this;
+        setTimeout(function() {
+          that.bouger(contexte);
+        }, this.attente);
+      }
+      else {
+        console.log("J'arrête car mon contexte n'est plus visible.");
+      }
     },
 
     creerNouveau: function() {

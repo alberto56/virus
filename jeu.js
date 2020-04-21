@@ -1,6 +1,12 @@
-function creerNouveauJeu(selecteur, destination = '.panneau-jeu') {
-  return {
+function creerNouveauJeu(selecteur, niveau, destination = '.panneau-jeu') {
+  returnvalue = {
     objet: $('.jeu.modele').clone().removeClass('modele').appendTo(destination),
+
+    niveau: niveau,
+
+    preparer: function() {
+      $('.nom-du-niveau').html(niveau.getNom());
+    },
 
     jeuInterne: function() {
       return this.objet.find('.jeu-interne');
@@ -30,4 +36,8 @@ function creerNouveauJeu(selecteur, destination = '.panneau-jeu') {
       return parseInt(Math.random() * (this.objet.width() - width_du_point));
     }
   }
+
+  returnvalue.preparer();
+
+  return returnvalue;
 }

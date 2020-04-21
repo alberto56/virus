@@ -17,6 +17,10 @@
 .ecran-de-bienvenue {
   background: yellow;
 }
+.prochain-niveau {
+  background: red;
+}
+
 .game-over {
   background: green;
 }
