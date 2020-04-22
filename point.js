@@ -196,9 +196,6 @@ function creerPoint(jeu, niveau) {
           that.bouger(contexte);
         }, this.attente);
       }
-      else {
-        console.log("J'arrête car mon contexte n'est plus visible.");
-      }
     },
 
     creerNouveau: function() {

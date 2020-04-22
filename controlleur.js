@@ -1,7 +1,7 @@
 function controlleur() {
   return {
     commencerJeu: function() {
-      utilitaires().montrerPanneau('ecran-de-bienvenue');
+      this.montrerPanneau('ecran-de-bienvenue');
       accepterBarreEspacement();
 
       var jeuDeBienvenue = creerNouveauJeu('.jeu', {
@@ -37,9 +37,14 @@ function controlleur() {
       }
     },
 
-    continuerJeu: function() {
+    montrerPanneau: function(panneau) {
       $('.panneau-jeu .jeu').remove();
-      utilitaires().montrerPanneau('prochain-niveau');
+      $('.panneau').hide();
+      $('.' + panneau).show();
+    },
+
+    continuerJeu: function() {
+      this.montrerPanneau('prochain-niveau');
       var that = this;
       $('.bouton-niveau-suivant').click(function() {
         that.commencerNiveau(niveau2());
@@ -47,17 +52,16 @@ function controlleur() {
     },
 
     gameOver: function() {
-      $('.panneau-jeu .jeu').remove();
-      utilitaires().montrerPanneau('game-over');
+      this.montrerPanneau('game-over');
 
       var that = this;
       $('.bouton-prochain-niveau').click(function() {
-        that.commencerNiveau();
+        that.commencerNiveau(niveau1());
       });
     },
 
     commencerNiveau: function(niveau) {
-      utilitaires().montrerPanneau('panneau-jeu');
+      this.montrerPanneau('panneau-jeu');
       $('.panneau-jeu .jeu').remove();
       var jeu = creerNouveauJeu('.jeu', niveau);
 
@@ -65,9 +69,10 @@ function controlleur() {
       $('.panneau-jeu .nombre-de-vies').html(niveau.vies());
       if (niveau.tutoriel()) {
         $('.panneau-jeu .niveau-non-tutoriel').remove();
+        var that = this;
         $('.retour-bienvenue').click(function() {
           $('.panneau-jeu .jeu').remove();
-          utilitaires().montrerPanneau('ecran-de-bienvenue');
+          that.montrerPanneau('ecran-de-bienvenue');
         });
         if (niveau.niveauPrecedent()) {
           var that = this;

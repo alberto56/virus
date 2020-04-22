@@ -27,11 +27,6 @@ function utilitaires() {
 
     setInfo: function(parametre, valeur) {
       return $('.infos .' + parametre).html(valeur);
-    },
-
-    montrerPanneau: function(panneau) {
-      $('.panneau').hide();
-      $('.' + panneau).show();
     }
   }
 }
