@@ -2,6 +2,7 @@ function controlleur() {
   return {
     commencerJeu: function() {
       utilitaires().montrerPanneau('ecran-de-bienvenue');
+      accepterBarreEspacement();
 
       var jeuDeBienvenue = creerNouveauJeu('.jeu', {
         getNom: function() {
@@ -17,9 +18,13 @@ function controlleur() {
         $('.ecran-de-bienvenue .jeu').remove();
         that.commencerNiveau(niveau1());
       });
+      $('.bouton-niveau-tutoriel').click(function() {
+        $('.ecran-de-bienvenue .jeu').remove();
+        that.commencerNiveau(niveauTutoriel1());
+      });
 
       for (i = 0; i < 10; ++i) {
-        var point = creerPoint(jeuDeBienvenue);
+        var point = creerPoint(jeuDeBienvenue, niveauBienvenue());
         point.creerNouveau();
         point.objet.css('height', '52px');
         point.objet.css('width', '52px');
@@ -53,21 +58,52 @@ function controlleur() {
 
     commencerNiveau: function(niveau) {
       utilitaires().montrerPanneau('panneau-jeu');
-      accepterBarreEspacement();
       $('.panneau-jeu .jeu').remove();
       var jeu = creerNouveauJeu('.jeu', niveau);
 
-      var joueur = creerPoint(jeu);
-      joueur.creerNouveau();
+      $('.panneau-jeu .instructions .texte').html(niveau.instructions());
+      $('.panneau-jeu .nombre-de-vies').html(niveau.vies());
+      if (niveau.tutoriel()) {
+        $('.panneau-jeu .niveau-non-tutoriel').remove();
+        $('.retour-bienvenue').click(function() {
+          $('.panneau-jeu .jeu').remove();
+          utilitaires().montrerPanneau('ecran-de-bienvenue');
+        });
+        if (niveau.niveauPrecedent()) {
+          var that = this;
+          $('.panneau-jeu .tutoriel-precedent').click(function() {
+            $('.panneau-jeu .jeu').remove();
+            that.commencerNiveau(niveau.niveauPrecedent());
+          });
+        }
+        else {
+          $('.panneau-jeu .tutoriel-precedent').remove();
+        }
+        if (niveau.niveauSuivant()) {
+          var that = this;
+          $('.panneau-jeu .tutoriel-suivant').click(function() {
+            $('.panneau-jeu .jeu').remove();
+            that.commencerNiveau(niveau.niveauSuivant());
+          });
+        }
+        else {
+          $('.panneau-jeu .tutoriel-suivant').remove();
+        }
+      }
+      else {
+        $('.panneau-jeu .instructions').remove();
+      }
 
-      joueur.placerAleatoire();
+      var joueur = creerPoint(jeu, niveau);
+      joueur.creerNouveau();
+      niveau.placerJoueur(joueur);
       joueur.devenirJoueur();
 
-      for (i = 0; i < 66; ++i) {
-        var point = creerPoint(jeu);
+      for (i = 0; i < niveau.nombredePoints(); ++i) {
+        var point = creerPoint(jeu, niveau);
         point.creerNouveau();
         point.placerAleatoire();
-        if (i < 6) {
+        if (i < niveau.infectes()) {
           point.infecter(100/100);
         }
         else if (i < niveau.asymptomatique()) {
@@ -77,8 +113,10 @@ function controlleur() {
         point.bouger($('.panneau-jeu'));
       }
 
-      utilitaires().setInfo('temps-restant', 30);
-      continuerDecompte(30);
+      if (!niveau.tutoriel()) {
+        utilitaires().setInfo('temps-restant', 30);
+        continuerDecompte(30);
+      }
     }
   };
 }

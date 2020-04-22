@@ -1,6 +1,6 @@
-function creerPoint(jeu) {
+function creerPoint(jeu, niveau) {
   return {
-    attente: 1,
+    attente: 50,
 
     largeur: function() {
       return this.objet.width();
@@ -9,6 +9,8 @@ function creerPoint(jeu) {
     hauteur: function() {
       return this.objet.height();
     },
+
+    niveau: niveau,
 
     rayon_infection: 20,
 
@@ -28,6 +30,12 @@ function creerPoint(jeu) {
       this.setLeft(this.pointHorizontalAleatoire());
     },
 
+    placerCentre: function() {
+      this.objet.appendTo(this.jeu.jeuInterne());
+      this.setTop(this.pointVerticalCentre());
+      this.setLeft(this.pointHorizontalCentre());
+    },
+
     devenirJoueur: function() {
       this.objet.css('background-color', 'white');
       this.objet.attr('data-joueur', 'oui');
@@ -36,7 +44,7 @@ function creerPoint(jeu) {
       var that = this;
       setTimeout(function() {
         that.devenirInvincible(false);
-      }, 5000);
+      }, niveau.invincibleDebut());
     },
 
     /**
@@ -73,6 +81,14 @@ function creerPoint(jeu) {
 
     pointHorizontalAleatoire: function() {
       return this.jeu.pointHorizontalAleatoire(this.largeur());
+    },
+
+    pointVerticalCentre: function() {
+      return this.jeu.pointVerticalCentre(this.hauteur());
+    },
+
+    pointHorizontalCentre: function() {
+      return this.jeu.pointHorizontalCentre(this.largeur());
     },
 
     clignoter: function() {

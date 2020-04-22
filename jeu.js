@@ -34,6 +34,14 @@ function creerNouveauJeu(selecteur, niveau, destination = '.panneau-jeu') {
 
     pointHorizontalAleatoire: function(width_du_point) {
       return parseInt(Math.random() * (this.objet.width() - width_du_point));
+    },
+
+    pointVerticalCentre: function(height_du_point) {
+      return parseInt(0.5 * (this.objet.height() - height_du_point));
+    },
+
+    pointHorizontalCentre: function(width_du_point) {
+      return parseInt(0.5 * (this.objet.width() - width_du_point));
     }
   }
 
