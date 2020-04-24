@@ -21,6 +21,14 @@ function utilitaires() {
       });
     },
 
+    getEnPause: function() {
+      return $('body').attr('data-en-pause') == 'oui' ? true : false;
+    },
+
+    setEnPause: function(pause) {
+      $('body').attr('data-en-pause', pause ? 'oui' : 'non');
+    },
+
     getInfo: function(parametre) {
       return $('.infos .' + parametre).html();
     },

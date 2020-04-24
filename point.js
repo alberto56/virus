@@ -40,11 +40,7 @@ function creerPoint(jeu, niveau) {
       this.objet.css('background-color', 'white');
       this.objet.attr('data-joueur', 'oui');
       this.DevenirControlable() ;
-      this.devenirInvincible(true);
-      var that = this;
-      setTimeout(function() {
-        that.devenirInvincible(false);
-      }, niveau.invincibleDebut());
+      this.devenirInvincible(niveau.invincibleDebut());
     },
 
     /**
@@ -114,10 +110,16 @@ function creerPoint(jeu, niveau) {
       }, 50);
     },
 
-    devenirInvincible: function(devenir) {
-      if (devenir) {
+    devenirInvincible: function(temps, clignoter = true) {
+      if (temps > 0) {
         this.objet.attr('data-invincible', 'oui');
-        this.clignoter();
+        if (clignoter) {
+          this.clignoter();
+        }
+        var that = this;
+        setTimeout(function() {
+          that.devenirInvincible(utilitaires().getEnPause() ? temps : (temps - 100), false);
+        }, 100);
       }
       else {
         this.objet.attr('data-invincible', 'non');
@@ -135,11 +137,7 @@ function creerPoint(jeu, niveau) {
       if (Math.random() < chance) {
         if (this.objet.attr('data-joueur') == 'oui') {
           if (this.objet.attr('data-invincible') == 'non') {
-            this.devenirInvincible(true);
-            var that = this;
-            setTimeout(function() {
-              that.devenirInvincible(false);
-            }, 3000);
+            this.devenirInvincible(3000);
             nombredevies=utilitaires().getInfo('nombre-de-vies');
             utilitaires().setInfo('nombre-de-vies', --nombredevies)
             if (nombredevies==0)  {
@@ -174,22 +172,23 @@ function creerPoint(jeu, niveau) {
 
     bouger: function(contexte) {
 
-      var top_a = this.objet.position().top;
-      var left_a = this.objet.position().left;
-      var top_b = this.objet.attr('data-dest-v');
-      var left_b = this.objet.attr('data-dest-h');
+      if (!utilitaires().getEnPause()) {
+        var top_a = this.objet.position().top;
+        var left_a = this.objet.position().left;
+        var top_b = this.objet.attr('data-dest-v');
+        var left_b = this.objet.attr('data-dest-h');
 
-      if (top_a == top_b && left_a == left_b) {
-        this.choisirDestination();
-        this.bouger(contexte);
-        return;
+        if (top_a == top_b && left_a == left_b) {
+          this.choisirDestination();
+          this.bouger(contexte);
+          return;
+        }
+
+        this.setTop(utilitaires().bougerVers(top_a, top_b, this.objet.attr('data-vitesse')));
+        this.setLeft(utilitaires().bougerVers(left_a, left_b, this.objet.attr('data-vitesse')));
+
+        this.infecterVoisins();
       }
-
-      this.setTop(utilitaires().bougerVers(top_a, top_b, this.objet.attr('data-vitesse')));
-      this.setLeft(utilitaires().bougerVers(left_a, left_b, this.objet.attr('data-vitesse')));
-
-      this.infecterVoisins();
-
       if (contexte.is(":visible")) {
         var that = this;
         setTimeout(function() {
@@ -205,6 +204,9 @@ function creerPoint(jeu, niveau) {
     DevenirControlable: function() {
           var that = this;
           $('body').keyup(function(e){
+            if (utilitaires().getEnPause()) {
+              return;
+            }
             if(e.keyCode == 39){
               // user has pressed right arrow
               var left_a = that.objet.position().left;

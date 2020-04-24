@@ -55,9 +55,13 @@ function controlleur() {
       this.montrerPanneau('game-over');
 
       var that = this;
-      $('.bouton-prochain-niveau').click(function() {
-        that.commencerNiveau(niveau1());
-      });
+      setTimeout(function() {
+        var that2 = that;
+        $('.bouton-prochain-niveau').show().click(function() {
+          that2.commencerNiveau(niveau1());
+          $('.cache-pour-une-seconde').hide();
+        });
+      }, 1050);
     },
 
     commencerNiveau: function(niveau) {
