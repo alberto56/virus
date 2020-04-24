@@ -11,7 +11,7 @@ function niveauTutoriel3() {
     return 1;
   };
   objet.instructions = function() {
-    return "Les points verts sont inoffensifs mais peuvent se faire infecter en passant à promité des points rouges et vont à leur tour devenir contagieux.";
+    return "Les points verts sont inoffensifs mais peuvent se faire infecter en passant à proximité des points rouges et vont à leur tour devenir contagieux.";
   };
   objet.tutoriel = function() {
     return true;
