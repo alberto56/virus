@@ -8,7 +8,7 @@ function niveau2() {
     return 30;
   };
   objet.niveauSuivant = function() {
-    return false;
+    return niveau3();
   };
   objet.niveauPrecedent = function() {
     return niveau1();

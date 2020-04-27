@@ -1,24 +1,6 @@
 $(document).ready(function () {
-  controlleur().commencerJeu();
+  ControlleurFactory.instance().commencerJeu();
 });
-
-function continuerDecompte(secondes) {
-  if ((utilitaires().getInfo("temps-restant"))==(0)) {
-    controlleur().continuerJeu();
-    return;
-  }
-
-  if (!$('.panneau-jeu').is(":visible")) {
-    return;
-  }
-
-  setTimeout(function() {
-    if (!utilitaires().getEnPause()) {
-      utilitaires().setInfo('temps-restant', --secondes);
-    }
-    continuerDecompte(secondes);
-  }, 1000);
-}
 
 function accepterBarreEspacement() {
   $('body').keyup(function(e){

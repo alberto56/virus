@@ -96,7 +96,7 @@ function creerPoint(jeu, niveau) {
       // à ce stade nous sommes invincible.
 
       if (this.objet.attr('data-clignotement') == 'visible') {
-        this.objet.css('background-color', 'black');
+        this.objet.css('background-color', 'transparent');
         this.objet.attr('data-clignotement', 'invisible');
       }
       else {
@@ -142,7 +142,7 @@ function creerPoint(jeu, niveau) {
             utilitaires().setInfo('nombre-de-vies', --nombredevies)
             if (nombredevies==0)  {
               $('.point').attr('data-vitesse', 0);
-              controlleur().gameOver();
+              ControlleurFactory.instance().gameOver();
             }
           }
         }

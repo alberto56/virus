@@ -5,16 +5,10 @@ function niveauTutoriel4() {
     return "Niveau Tutoriel 4";
   };
   objet.asymptomatique = function() {
-    return 49;
+    return 50;
   };
   objet.instructions = function() {
     return "Les points jaunes agissent de la même manière que les points verts mais ne changeront pas de couleurs lorsqu'ils seront infectés.";
-  };
-  objet.tutoriel = function() {
-    return true;
-  };
-  objet.invincibleDebut = function() {
-    return 0;
   };
   objet.niveauSuivant = function() {
     return false;

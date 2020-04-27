@@ -13,12 +13,6 @@ function niveauTutoriel2() {
   objet.instructions = function() {
     return "Les points rouges sont contagieux. Évitez-les ou ils vont vous infecter.";
   };
-  objet.tutoriel = function() {
-    return true;
-  };
-  objet.invincibleDebut = function() {
-    return 0;
-  };
   objet.niveauSuivant = function() {
     return niveauTutoriel3();
   };

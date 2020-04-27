@@ -21,8 +21,11 @@ function niveau1() {
     instructions: function(){
       return "";
     },
+    duree: function() {
+      return 30;
+    },
     invincibleDebut: function(){
-      return 5000;
+      return 3000;
     },
     placerJoueur: function(joueur) {
       // Par exemple, joueur.placerAleatoire();
@@ -33,6 +36,9 @@ function niveau1() {
     },
     infectes: function(){
       return 6;
+    },
+    niveauPanneau: function() {
+      return false;
     }
   }
 }
