@@ -111,6 +111,9 @@ function creerPoint(jeu, niveau) {
     },
 
     devenirInvincible: function(temps, clignoter = true) {
+      if (this.objet.attr('data-invincible') == 'oui') {
+        return;
+      }
       if (temps > 0) {
         this.objet.attr('data-invincible', 'oui');
         if (clignoter) {
@@ -187,8 +190,6 @@ function creerPoint(jeu, niveau) {
         this.setTop(utilitaires().bougerVers(top_a, top_b, this.objet.attr('data-vitesse')));
         this.setLeft(utilitaires().bougerVers(left_a, left_b, this.objet.attr('data-vitesse')));
 
-        console.log("Je m'apprête à infecter mes voisins.")
-        console.log(this)
         this.infecterVoisins();
       }
       if (contexte.is(":visible")) {

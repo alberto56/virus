@@ -3,33 +3,6 @@ var ControlleurFactory = (function () {
 
   function createInstance() {
     return {
-      // Continuer le décompte en retirant un certain nombre de secondes
-      // et en faisant la même chose une seconde plus.
-      // Par exemple, continuerDecompte(2), si le décompte est actuellement
-      // à 10, va initier un décompte qui fera 10...8...6... etc.
-      //
-      // secondes: le nombre de secondes à retirer chaque seconde jusqu'à la
-      // fin du jeu, par exemple 1.
-      continuerDecompte: function(secondes) {
-        var temps_restant_actuel=utilitaires().getInfo("temps-restant");
-        if (temps_restant_actuel <= 0) {
-          this.continuerJeu();
-          return;
-        }
-
-        if (!$('.panneau-jeu').is(":visible")) {
-          return;
-        }
-
-        var that = this;
-        setTimeout(function() {
-          if (!utilitaires().getEnPause()) {
-            utilitaires().setInfo('temps-restant', utilitaires().getInfo("temps-restant")-secondes);
-          }
-          that.continuerDecompte(secondes);
-        }, 1000);
-      },
-
       niveauActuel: niveau1(),
 
       commencerJeu: function() {
@@ -73,14 +46,6 @@ var ControlleurFactory = (function () {
         $('.panneau-jeu .jeu').remove();
         $('.panneau').hide();
         $('.' + panneau).show();
-      },
-
-      continuerJeu: function() {
-        this.montrerPanneau('prochain-niveau');
-        var that = this;
-        $('.bouton-niveau-suivant').off().click(function() {
-          that.commencerNiveau(that.niveauActuel.niveauSuivant());
-        });
       },
 
       gameOver: function() {
@@ -163,10 +128,12 @@ var ControlleurFactory = (function () {
           point.bouger($('.panneau-jeu'));
         }
 
-        if (!niveau.tutoriel()) {
-          utilitaires().setInfo('temps-restant', niveau.duree());
-          this.continuerDecompte(1);
-        }
+        niveau.activerObjectifs();
+
+        // if (!niveau.tutoriel()) {
+        //   utilitaires().setInfo('temps-restant', niveau.duree());
+        //   this.continuerDecompte(1);
+        // }
 
         niveau.preparer(this.jeu);
       }
