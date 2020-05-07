@@ -12,17 +12,22 @@ function niveau1() {
     niveauPrecedent: function(){
       return false;
     },
+    preparer: function(jeu) {
+      // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
+      // nouvelles fonctionalités comme des collectibles ou autres...
+      creerCollectibleAvancerTemps(jeu, this);
+    },
     nombredePoints: function(){
       return 66;
     },
     vies: function(){
-      return 3;
+      return 300;
     },
     instructions: function(){
       return "";
     },
     duree: function() {
-      return 30;
+      return 800;
     },
     invincibleDebut: function(){
       return 3000;
@@ -39,6 +44,10 @@ function niveau1() {
     },
     niveauPanneau: function() {
       return false;
+    },
+    vitesse: function() {
+      return 5;
     }
+
   }
 }

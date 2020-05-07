@@ -3,9 +3,16 @@ var ControlleurFactory = (function () {
 
   function createInstance() {
     return {
+      // Continuer le décompte en retirant un certain nombre de secondes
+      // et en faisant la même chose une seconde plus.
+      // Par exemple, continuerDecompte(2), si le décompte est actuellement
+      // à 10, va initier un décompte qui fera 10...8...6... etc.
+      //
+      // secondes: le nombre de secondes à retirer chaque seconde jusqu'à la
+      // fin du jeu, par exemple 1.
       continuerDecompte: function(secondes) {
-
-        if ((utilitaires().getInfo("temps-restant"))==(0)) {
+        var temps_restant_actuel=utilitaires().getInfo("temps-restant");
+        if (temps_restant_actuel <= 0) {
           this.continuerJeu();
           return;
         }
@@ -17,7 +24,7 @@ var ControlleurFactory = (function () {
         var that = this;
         setTimeout(function() {
           if (!utilitaires().getEnPause()) {
-            utilitaires().setInfo('temps-restant', --secondes);
+            utilitaires().setInfo('temps-restant', utilitaires().getInfo("temps-restant")-secondes);
           }
           that.continuerDecompte(secondes);
         }, 1000);
@@ -89,6 +96,8 @@ var ControlleurFactory = (function () {
         }, 1050);
       },
 
+      jeu: false,
+
       commencerNiveau: function(niveau) {
         this.niveauActuel = niveau;
 
@@ -99,7 +108,7 @@ var ControlleurFactory = (function () {
 
         this.montrerPanneau('panneau-jeu');
         $('.panneau-jeu .jeu').remove();
-        var jeu = creerNouveauJeu('.jeu', niveau);
+        this.jeu = creerNouveauJeu('.jeu', niveau);
 
         $('.panneau-jeu .instructions .texte').html(niveau.instructions());
         $('.panneau-jeu .nombre-de-vies').html(niveau.vies());
@@ -135,13 +144,13 @@ var ControlleurFactory = (function () {
           $('.panneau-jeu .instructions').remove();
         }
 
-        var joueur = creerPoint(jeu, niveau);
+        var joueur = creerPoint(this.jeu, niveau);
         joueur.creerNouveau();
         niveau.placerJoueur(joueur);
         joueur.devenirJoueur();
 
         for (i = 0; i < niveau.nombredePoints(); ++i) {
-          var point = creerPoint(jeu, niveau);
+          var point = creerPoint(this.jeu, niveau);
           point.creerNouveau();
           point.placerAleatoire();
           if (i < niveau.infectes()) {
@@ -156,8 +165,10 @@ var ControlleurFactory = (function () {
 
         if (!niveau.tutoriel()) {
           utilitaires().setInfo('temps-restant', niveau.duree());
-          this.continuerDecompte(niveau.duree());
+          this.continuerDecompte(1);
         }
+
+        niveau.preparer(this.jeu);
       }
     };
   }
@@ -171,3 +182,7 @@ var ControlleurFactory = (function () {
     }
   };
 })();
+
+function controlleur() {
+  return ControlleurFactory.instance();
+}

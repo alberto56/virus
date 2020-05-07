@@ -30,11 +30,17 @@
 .modele {
   display: none;
 }
-.point {
+.point,
+.collectible {
   height: 10px;
   position: absolute;
   width: 10px;
+}
+.point {
   background: green;
+}
+.collectible {
+  background: blue;
 }
 .infos {
   position: absolute;

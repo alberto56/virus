@@ -12,8 +12,8 @@ function utilitaires() {
       }
     },
 
-    trouverVoisins: function(top, left, rayon) {
-      return $('.panneau-jeu .point[data-infecte=non]').filter(function() {
+    trouverVoisins: function(top, left, rayon, identifiant = '.point[data-infecte=non]') {
+      return $('.panneau-jeu ' + identifiant).filter(function() {
         return $(this).position().top <= top + rayon &&
           $(this).position().top >= top - rayon &&
           $(this).position().left <= left + rayon &&

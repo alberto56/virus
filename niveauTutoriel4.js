@@ -11,7 +11,7 @@ function niveauTutoriel4() {
     return "Les points jaunes agissent de la même manière que les points verts mais ne changeront pas de couleurs lorsqu'ils seront infectés.";
   };
   objet.niveauSuivant = function() {
-    return false;
+    return niveauTutoriel5();
   };
   objet.niveauPrecedent = function() {
     return niveauTutoriel3();

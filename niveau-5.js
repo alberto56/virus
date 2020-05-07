@@ -1,20 +1,23 @@
-function niveau4() {
+function niveau5() {
   var objet = Object.create(niveau3());
 
   objet.getNom = function() {
-    return "Niveau 4";
+    return "Niveau 5";
   };
   objet.niveauSuivant = function() {
-    return niveau5();
+    return niveauPanneau('panneau-final');
   };
   objet.niveauPrecedent = function() {
-    return niveau3();
+    return niveau4();
   };
   objet.nombredePoints = function(){
     return 100;
   };
   objet.infectes = function(){
     return 20;
+  };
+  objet.preparer = function(jeu){
+    creerCollectibleAvancerTemps(jeu, objet);
   };
 
   return objet;

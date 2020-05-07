@@ -187,6 +187,8 @@ function creerPoint(jeu, niveau) {
         this.setTop(utilitaires().bougerVers(top_a, top_b, this.objet.attr('data-vitesse')));
         this.setLeft(utilitaires().bougerVers(left_a, left_b, this.objet.attr('data-vitesse')));
 
+        console.log("Je m'apprête à infecter mes voisins.")
+        console.log(this)
         this.infecterVoisins();
       }
       if (contexte.is(":visible")) {
@@ -198,7 +200,7 @@ function creerPoint(jeu, niveau) {
     },
 
     creerNouveau: function() {
-      this.utiliserBalise($('.point.modele').clone().removeClass('modele').attr('data-vitesse', 5).css('height', parseInt(8 + Math.random() * 5) + 'px').css('width', parseInt(8 + Math.random() * 5) + 'px'));
+      this.utiliserBalise($('.point.modele').clone().removeClass('modele').attr('data-vitesse', this.niveau.vitesse()).css('height', parseInt(8 + Math.random() * 5) + 'px').css('width', parseInt(8 + Math.random() * 5) + 'px'));
     },
 
     DevenirControlable: function() {
