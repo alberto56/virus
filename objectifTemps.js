@@ -29,9 +29,10 @@ function objectifTemps(niveau) {
   },
 
   objet.activer = function() {
-    console.log(this.niveau)
     utilitaires().setInfo('temps-restant', this.niveau.duree());
     this.continuerDecompte(1);
+
+    $('.espace-objectif').append('<span>IL VOUS RESTE <span class="temps-restant">' + this.niveau.duree() + '</span> SECONDES. </span>');
   }
 
   return objet;

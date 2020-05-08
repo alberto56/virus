@@ -15,6 +15,7 @@ function creerCollectible(jeu, niveau) {
       console.log('ça marche!')
       that.activer()
       that.objet.remove()
+      niveau.collectibleretire()
     });
   };
 

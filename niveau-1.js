@@ -16,7 +16,14 @@ function niveau1() {
   objet.preparer = function(jeu) {
     // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
     // nouvelles fonctionalités comme des collectibles ou autres...
-    creerCollectibleAvancerTemps(jeu, this);
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
   };
   objet.nombredePoints = function(){
     return 66;
@@ -49,8 +56,15 @@ function niveau1() {
   objet.vitesse = function() {
     return 5;
   }
+  // objet.objectifCollectibles = objectifCollectibles(objet);
+  objet.collectibleretire = function() {
+    //this.objectifCollectibles.recalculer();
+  }
 
-  objet.objectifs = [objectifTemps(objet)];
+  objet.objectifs = [
+    objectifTemps(objet),
+    //objet.objectifCollectibles
+  ];
 
   return objet;
 }

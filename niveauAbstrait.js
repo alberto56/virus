@@ -6,6 +6,10 @@ function niveauAbstrait() {
       this.objectifs.forEach(function (e) {
         e.activer();
       });
+    },
+
+    collectibleretire: function() {
+
     }
   }
 }

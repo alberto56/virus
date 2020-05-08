@@ -110,18 +110,15 @@ function creerPoint(jeu, niveau) {
       }, 50);
     },
 
-    devenirInvincible: function(temps, clignoter = true) {
-      if (this.objet.attr('data-invincible') == 'oui') {
-        return;
-      }
+    devenirInvincible: function(temps) {
       if (temps > 0) {
-        this.objet.attr('data-invincible', 'oui');
-        if (clignoter) {
+        if (this.objet.attr('data-invincible') == 'non') {
+          this.objet.attr('data-invincible', 'oui');
           this.clignoter();
         }
         var that = this;
         setTimeout(function() {
-          that.devenirInvincible(utilitaires().getEnPause() ? temps : (temps - 100), false);
+          that.devenirInvincible(utilitaires().getEnPause() ? temps : (temps - 100));
         }, 100);
       }
       else {
