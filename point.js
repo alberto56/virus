@@ -201,37 +201,56 @@ function creerPoint(jeu, niveau) {
       this.utiliserBalise($('.point.modele').clone().removeClass('modele').attr('data-vitesse', this.niveau.vitesse()).css('height', parseInt(8 + Math.random() * 5) + 'px').css('width', parseInt(8 + Math.random() * 5) + 'px'));
     },
 
+    enTrainDavancer: false,
+
+    joueurContinuerAvancer: function(code) {
+      if (!this.enTrainDavancer) {
+        return;
+      }
+
+      if(code == 39){
+        // user has pressed right arrow
+        var left_a = this.objet.position().left;
+        var left_b = left_a + 10;
+        this.setLeft(left_b);
+      }
+      if(code == 37){
+        // user has pressed left arrow
+        var left_a = this.objet.position().left;
+        var left_b = left_a - 10;
+        this.setLeft(left_b);
+      }
+      if(code == 38){
+        // user has pressed up arrow
+        var top_a = this.objet.position().top;
+        var top_b = top_a - 10;
+        this.setTop(top_b);
+      }
+      if(code == 40){
+        // user has pressed down arrow
+        var top_a = this.objet.position().top;
+        var top_b = top_a + 10;
+        this.setTop(top_b);
+      }
+      var that = this;
+      setTimeout(function() {
+        that.joueurContinuerAvancer(code);
+      }, this.niveau.vitesseJoueur());
+
+    },
+
     DevenirControlable: function() {
-          var that = this;
-          $('body').keyup(function(e){
-            if (utilitaires().getEnPause()) {
-              return;
-            }
-            if(e.keyCode == 39){
-              // user has pressed right arrow
-              var left_a = that.objet.position().left;
-              var left_b = left_a + 10;
-              that.setLeft(left_b);
-            }
-            if(e.keyCode == 37){
-              // user has pressed left arrow
-              var left_a = that.objet.position().left;
-              var left_b = left_a - 10;
-              that.setLeft(left_b);
-            }
-            if(e.keyCode == 38){
-              // user has pressed up arrow
-              var top_a = that.objet.position().top;
-              var top_b = top_a - 10;
-              that.setTop(top_b);
-            }
-            if(e.keyCode == 40){
-              // user has pressed down arrow
-              var top_a = that.objet.position().top;
-              var top_b = top_a + 10;
-              that.setTop(top_b);
-            }
-          });
+      var that = this;
+      $('body').keydown(function(e){
+        if (utilitaires().getEnPause()) {
+          return;
+        }
+        that.enTrainDavancer = true;
+        that.joueurContinuerAvancer(e.keyCode);
+      });
+      $('body').keyup(function(e){
+        that.enTrainDavancer = false;
+      });
     }
 
   };

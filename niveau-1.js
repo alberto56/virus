@@ -10,6 +10,9 @@ function niveau1() {
   objet.niveauSuivant = function(){
     return niveau2();
   };
+  objet.vitesseJoueur = function(){
+    return Math.random()*50;
+  },
   objet.niveauPrecedent = function(){
     return false;
   };
