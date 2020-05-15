@@ -14,28 +14,21 @@ function niveau1() {
     return false;
   };
   objet.preparer = function(jeu) {
-    // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
-    // nouvelles fonctionalités comme des collectibles ou autres...
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-    // creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    this.objectifs = [
+      objectifTemps(this),
+    ];
   };
   objet.nombredePoints = function(){
     return 66;
   };
   objet.vies = function(){
-    return 300;
+    return 3;
   };
   objet.instructions = function(){
     return "";
   };
   objet.duree = function() {
-    return 800;
+    return 30;
   };
   objet.invincibleDebut = function(){
     return 3000;
@@ -56,15 +49,9 @@ function niveau1() {
   objet.vitesse = function() {
     return 5;
   }
-  // objet.objectifCollectibles = objectifCollectibles(objet);
   objet.collectibleretire = function() {
-    //this.objectifCollectibles.recalculer();
+    this.objectifCollectibles.recalculer();
   }
-
-  objet.objectifs = [
-    objectifTemps(objet),
-    //objet.objectifCollectibles
-  ];
 
   return objet;
 }

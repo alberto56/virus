@@ -16,6 +16,12 @@ function niveau4() {
   objet.infectes = function(){
     return 20;
   };
+  objet.preparer = function(jeu) {
+    creerCollectibleAvancerTemps(jeu, objet);
+    this.objectifs = [
+      objectifTemps(this),
+    ];
+  }
 
   return objet;
 }

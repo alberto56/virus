@@ -33,6 +33,9 @@ function utilitaires() {
       return $('.infos .' + parametre).html();
     },
 
+    // afficher une information
+    // parametre: le nom de la classe, sans point, par exemple:
+    // "collectibles-restants".
     setInfo: function(parametre, valeur) {
       return $('.infos .' + parametre).html(valeur);
     }

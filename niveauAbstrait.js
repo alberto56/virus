@@ -3,6 +3,7 @@ function niveauAbstrait() {
     objectifs: [],
 
     activerObjectifs: function() {
+      $('.espace-objectif').html('');
       this.objectifs.forEach(function (e) {
         e.activer();
       });

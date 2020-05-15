@@ -4,10 +4,9 @@ function objectifCollectibles(niveau) {
 
   objet.recalculer = function() {
     var quantite = $('.panneau-jeu .collectible').length;
-    utilitaires().setInfo('.collectibles-restants', quantite);
+    utilitaires().setInfo('collectibles-restants', quantite);
       if(quantite <= 0){
-        console.log("j'ai gagné!!!");
-        //this.continuerJeu();
+        this.continuerJeu();
       }
   }
 

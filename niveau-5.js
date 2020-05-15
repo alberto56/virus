@@ -16,8 +16,21 @@ function niveau5() {
   objet.infectes = function(){
     return 20;
   };
-  objet.preparer = function(jeu){
-    creerCollectibleAvancerTemps(jeu, objet);
+  objet.objectifCollectibles = objectifCollectibles(objet);
+  objet.preparer = function(jeu) {
+    // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
+    // nouvelles fonctionalités comme des collectibles ou autres...
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+    objet.objectifs = [
+      objet.objectifCollectibles
+    ];
   };
 
   return objet;

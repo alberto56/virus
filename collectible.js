@@ -12,7 +12,6 @@ function creerCollectible(jeu, niveau) {
     var left = this.objet.position().left;
     var that=this
     utilitaires().trouverVoisins(top, left, this.rayon_infection, '.point[data-joueur=oui]').each(function() {
-      console.log('ça marche!')
       that.activer()
       that.objet.remove()
       niveau.collectibleretire()

@@ -10,7 +10,7 @@ function objectifTemps(niveau) {
   // fin du jeu, par exemple 1.
   objet.continuerDecompte = function(secondes) {
     var temps_restant_actuel=utilitaires().getInfo("temps-restant");
-    if (temps_restant_actuel <= 0) {
+    if (temps_restant_actuel != null && temps_restant_actuel <= 0) {
       this.continuerJeu();
       return;
     }

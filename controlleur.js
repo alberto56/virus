@@ -128,14 +128,13 @@ var ControlleurFactory = (function () {
           point.bouger($('.panneau-jeu'));
         }
 
-        niveau.activerObjectifs();
-
         // if (!niveau.tutoriel()) {
         //   utilitaires().setInfo('temps-restant', niveau.duree());
         //   this.continuerDecompte(1);
         // }
 
         niveau.preparer(this.jeu);
+        niveau.activerObjectifs();
       }
     };
   }
