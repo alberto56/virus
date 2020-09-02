@@ -31,7 +31,8 @@
   display: none;
 }
 .point,
-.collectible {
+.collectible,
+.obstacle {
   height: 10px;
   position: absolute;
   width: 10px;
@@ -51,4 +52,8 @@
 .instructions {
   top: 0;
   font-size: 20px;
+}
+.obstacle {
+  background: blue;
+  opacity: 0.5;
 }

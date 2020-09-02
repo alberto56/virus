@@ -17,7 +17,15 @@ function niveauTutoriel5() {
     return niveauTutoriel4();
   };
   objet.preparer = function(jeu) {
-    creerCollectible(jeu, this);
+    creerCollectibleAvancerTemps(jeu, this);
+    creerCollectibleAvancerTemps(jeu, this);
+    creerCollectibleAvancerTemps(jeu, this);
+    creerCollectibleAvancerTemps(jeu, this);
+    creerCollectibleAvancerTemps(jeu, this);
+    creerCollectibleAvancerTemps(jeu, this);
+
+    var c = creerCollectibleAvancerTemps(jeu, this);
+    c.reapparaitre(3000, 3000)
   };
 
   return objet;

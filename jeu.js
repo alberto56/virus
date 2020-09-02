@@ -12,6 +12,10 @@ function creerNouveauJeu(selecteur, niveau, destination = '.panneau-jeu') {
       return this.objet.find('.jeu-interne');
     },
 
+    getObstacles: function() {
+      return $('.jeu .obstacle');
+    },
+
     getTop: function() {
       return 0;
     },

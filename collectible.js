@@ -8,6 +8,10 @@ function creerCollectible(jeu, niveau) {
   }
 
   objet.infecterVoisins = function() {
+    if(this.objet.css("opacity") == 0){
+      return;
+    }
+
     var top = this.objet.position().top;
     var left = this.objet.position().left;
     var that=this
@@ -18,5 +22,17 @@ function creerCollectible(jeu, niveau) {
     });
   };
 
+
+  objet.reapparaitre = function(apparaitre, disparaitre) {
+    var attente = this.objet.css("opacity") == 1 ? disparaitre : apparaitre;
+    this.placerAleatoire();
+
+    var that = this;
+    setTimeout(function() {
+      that.objet.css("opacity") == 1 ? that.objet.css('opacity', '0') : that.objet.css('opacity', '1');
+      that.reapparaitre(apparaitre, disparaitre)
+    }, attente);
+
+  }
   return objet;
 }

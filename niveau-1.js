@@ -10,8 +10,8 @@ function niveau1() {
   objet.niveauSuivant = function(){
     return niveau2();
   };
-  objet.vitesseJoueur = function(){
-    return Math.random()*50;
+  objet.endurancejoueur = function(){
+    return 500;
   },
   objet.niveauPrecedent = function(){
     return false;
@@ -51,9 +51,12 @@ function niveau1() {
   };
   objet.vitesse = function() {
     return 5;
+  };
+  objet.vitessejoueur = function() {
+    return 10;
   }
   objet.collectibleretire = function() {
-    this.objectifCollectibles.recalculer();
+    // this.objectifCollectibles.recalculer(); ????
   }
 
   return objet;

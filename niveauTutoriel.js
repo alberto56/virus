@@ -16,6 +16,10 @@ function niveauTutoriel1() {
   objet.invincibleDebut = function() {
     return 0;
   };
+  objet.preparer = function(jeu) {
+    // left, width, top, height
+    creerObstacle(jeu, this, 300, 100, 0, 30);
+  };
   objet.niveauSuivant = function() {
     return niveauTutoriel2();
   };
