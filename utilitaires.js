@@ -15,6 +15,88 @@ function utilitaires() {
       }
     },
 
+    /**
+     * Calculer une destination horizontale réelle.
+     *
+     * @param obstacles
+     *   Une liste d'obstacles, chacune ayant largeur, hauteur, top et left.
+     * @param dep_left
+     *   Position horizontale actuelle du joueur.
+     * @param destination_left
+     *   Où notre joueur veut aller (sur le plan horizontal).
+     * @param top
+     *   La position de notre joueur sur le plan vertical.
+     * @param hauteur
+     *   Hauteur du joueur.
+     * @param largeur
+     *   Largeur du joueur.
+     *
+     * @return
+     *   Une destination left où on devrait réellement aller.
+     *
+     * @throws \Exception
+     */
+    calculerDestinationLeftReelle: function(obstacles, dep_left, destination_left, top, hauteur, largeur) {
+      console.log("**** debut calculerDestinationLeftReelle ****");
+      console.log(obstacles);
+      console.log(dep_left);
+      console.log(destination_left);
+      console.log(top);
+      console.log(hauteur);
+      console.log(largeur);
+      // éviter de tout calculer si notre destination est égale à notre point
+      // de départ.
+      if (destination_left == dep_left) {
+        return destination_left;
+      }
+
+      var destination_left_reelle = destination_left;
+
+      obstacles.forEach(function (item, index) {
+        var bottom = item.top + item.hauteur;
+        var right = item.left + item.largeur;
+
+        console.log("dep_left: " + (dep_left + largeur));
+        console.log("top: " + top);
+        console.log("destination_left_reelle: " + destination_left_reelle);
+        console.log("item.top: " + item.top);
+        console.log("bottom: " + bottom);
+        console.log("item.left: " + item.left);
+        console.log("right: " + right);
+
+        // Je recule
+        if (dep_left > destination_left) {
+          var dep_avec_largeur = dep_left;
+          var dest_avec_largeur = destination_left_reelle;
+        }
+        // J'avance
+        else {
+          var dep_avec_largeur = dep_left + largeur;
+          var dest_avec_largeur = destination_left_reelle + largeur;
+        }
+
+        bloque = utilitaires().obstacleBloqueChemin(dep_avec_largeur, top, dest_avec_largeur, top, item.top, bottom, item.left, right);
+
+        var destination_left_reelle_candidat = destination_left_reelle;
+
+        if(bloque && destination_left_reelle > dep_left){
+          destination_left_reelle_candidat = item.left - largeur;
+        }
+        else if(bloque && destination_left_reelle < dep_left){
+          destination_left_reelle_candidat = right;
+        }
+
+        if(utilitaires().chiffreEntreDeuxChiffres(dep_left, destination_left_reelle, destination_left_reelle_candidat)){
+          destination_left_reelle = destination_left_reelle_candidat
+        }
+      });
+
+      console.log("**** fin calculerDestinationLeftReelle ****");
+      console.log(destination_left_reelle);
+
+      return destination_left_reelle;
+    },
+
     bougerVers: function(start, dest, vitesse) {
       if (dest > start) {
         return start + Math.min(vitesse, dest - start);
@@ -71,18 +153,55 @@ function utilitaires() {
       return r;
     },
 
+    /**
+     * Vérifie si un obstabcle bloque notre chemin.
+     *
+     * @param dep_x
+     *   Les coordonnées x de notre point de départ.
+     * @param dep_y
+     *   Les coordonnées y de notre point de départ.
+     * @param arr_x
+     *   Là où on veut aller (coordonnées x).
+     * @param arr_y
+     *   Là où on veut aller (coordonnées y).
+     * @param obst_top
+     *   Le top de notre obstacle.
+     * @param obst_bottom
+     *   Le bottom de notre obstacle.
+     * @param obst_left
+     *   La gauche de notre obstacle.
+     * @param obst_right
+     *   La droite de notre obstacle.
+     *
+     * @return bool
+     *   Vrai si notre obstacle bloque notre chemin.
+     */
     obstacleBloqueChemin: function (dep_x, dep_y, arr_x, arr_y, obst_top, obst_bottom, obst_left, obst_right) {
+      // console.log('******* obstacleBloqueChemin *******');
+      // console.log('dep_x: ' + dep_x)
+      // console.log('dep_y: ' + dep_y)
+      // console.log('arr_x: ' + arr_x)
+      // console.log('arr_y: ' + arr_y)
+      // console.log('obst_top: ' + obst_top)
+      // console.log('obst_bottom: ' + obst_bottom)
+      // console.log('obst_left: ' + obst_left)
+      // console.log('obst_right: ' + obst_right)
 
-      if (obst_right < obst_left || obst_top < obst_bottom) {
+      // Si l'obstacle a un volume négatif, il ne nous bloque pas.
+      if (obst_right < obst_left || obst_top > obst_bottom) {
 
+        console.log(186);
         return false;
       }
       if (obst_right < Math.min(dep_x, arr_x) || obst_left > Math.max(dep_x, arr_x)) {
 
+        console.log(186);
         return false;
       }
-      if (obst_top < Math.min(dep_y, arr_y) || obst_bottom > Math.max(dep_y, arr_y)) {
+      //
+      if (obst_bottom < Math.min(dep_y, arr_y) || obst_top > Math.max(dep_y, arr_y)) {
 
+        console.log(190);
         return false;
       }
       // Trouver l'intersection avec le bottom
@@ -91,11 +210,13 @@ function utilitaires() {
         var x = this.yCorrespondantAX({x: dep_y, y: dep_x}, {x: arr_y, y: arr_x}, obst_bottom);
 
         if (this.chiffreEntreDeuxChiffres(obst_left, obst_right, x)) {
+          console.log(200);
           return true;
         }
 
         var x = this.yCorrespondantAX({x: dep_y, y: dep_x}, {x: arr_y, y: arr_x}, obst_top);
         if (this.chiffreEntreDeuxChiffres(obst_left, obst_right, x)) {
+          console.log(206);
           return true;
         }
       }
@@ -106,15 +227,18 @@ function utilitaires() {
         var y = this.yCorrespondantAX({x: dep_x, y: dep_y}, {x: arr_x, y: arr_y}, obst_left);
 
         if (this.chiffreEntreDeuxChiffres(obst_top, obst_bottom, y)) {
+          console.log(217);
           return true;
         }
 
         var y = this.yCorrespondantAX({x: dep_x, y: dep_y}, {x: arr_x, y: arr_y}, obst_right);
         if (this.chiffreEntreDeuxChiffres(obst_top, obst_bottom, y)) {
+          console.log(223);
           return true;
         }
       }
 
+      console.log(228);
       return false;
     },
 

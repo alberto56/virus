@@ -71,58 +71,24 @@ function creerPoint(jeu, niveau) {
      *   déplacements en ligne droite seulement.
      */
     setLeftIfPossible: function(destination_left, dep_left, top) {
+      // éviter de tout calculer si notre destination est égale à notre point
+      // de départ.
       if (destination_left == dep_left) {
         return;
       }
 
-      console.log('Nous allons tenter de bouger horizontalement si possible');
-
-      var destination_left_reelle = destination_left;
-
-      console.log('Nous sommes à ' + dep_left + ', ' + top);
-      console.log('Nous voulons aller à ' + destination_left + ', ' + top + ", mais il se peut qu'il y ait un obstacle!");
-
-      var that = this;
+      var obstacles = [];
       this.jeu.getObstacles().each(function () {
-        var largeur_de_lobstacle = $(this).width();
-        var hauteur_de_lobstacle = $(this).height();
-        var largeur_du_joueur = that.objet.width();
-        var hauteur_du_joueur = that.objet.height();
-
-        var b = $(this).position().top;
-        var gauche_de_lobstacle = $(this).position().left;
-        var d = ($(this).position().left + largeur_de_lobstacle);
-        var t = ($(this).position().top + hauteur_du_joueur);
-
-        console.log("Le left de l'obstacle est à " + gauche_de_lobstacle);
-        console.log("La largeur du joueur est " + largeur_du_joueur);
-
-
-        console.log("Nous vérifions si l'obstacle à top: " + t + ", droite: " + d + ", bottom: " + b + ", gauche: " + gauche_de_lobstacle + " est dans notre chemin");
-
-        bloque = utilitaires().obstacleBloqueChemin(dep_left + largeur_du_joueur, top, destination_left_reelle, top, t, b, gauche_de_lobstacle, d);
-
-        console.log("En voulant aller de " + dep_left + ", " + top + " à " + destination_left_reelle + ", " + top + "; " + "nous constatons que l'obstacle " + (bloque ? "bloque notre chemin" : "ne bloque pas notre chemin"));
-
-        var destination_left_reelle_candidat = destination_left_reelle;
-
-        if(bloque && destination_left_reelle > dep_left){
-          destination_left_reelle_candidat = gauche_de_lobstacle - largeur_du_joueur
-          console.log("On est bloque! notre destination (candidat) devient " + destination_left_reelle_candidat);
-        }
-        else if(bloque && destination_left_reelle < dep_left){
-          destination_left_reelle_candidat = d
-        }
-
-        if(utilitaires().chiffreEntreDeuxChiffres(dep_left, destination_left_reelle, destination_left_reelle_candidat)){
-          destination_left_reelle = destination_left_reelle_candidat
-        }
-
+        obstacles.push({
+          largeur: $(this).width(),
+          hauteur: $(this).height(),
+          top: $(this).position().top,
+          left: $(this).position().left
+        });
       });
 
-      console.log('En tenant compte des obstacles, notre destination est ' +  + destination_left_reelle + ', ' + top);
-
-      this.setLeft(destination_left_reelle);
+      // obstacles, dep_left, destination_left, top, hauteur, largeur
+      this.setLeft(utilitaires().calculerDestinationLeftReelle(obstacles, dep_left, destination_left, top, this.objet.height(), this.objet.width()));
     },
 
     setTopIfPossible: function(destination_top) {
