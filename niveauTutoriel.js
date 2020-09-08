@@ -18,7 +18,8 @@ function niveauTutoriel1() {
   };
   objet.preparer = function(jeu) {
     // left, width, top, height
-    creerObstacle(jeu, this, 300, 100, 0, 30);
+    creerObstacle(jeu, this, 300, 103, 503, 50);
+    creerObstacle(jeu, this, 800, 53, 43, 300);
   };
   objet.niveauSuivant = function() {
     return niveauTutoriel2();
