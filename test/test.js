@@ -20,6 +20,12 @@ test('function calculerDestinationLeftReelle() test', t => {
     top: 0,
     left: 300
   }], 407, 397, 0, 11, 9) == 400);
+  t.true(my.utilitaires().calculerDestinationLeftReelle([{
+    largeur: 10,
+    hauteur: 30,
+    top: 10,
+    left: 20
+  }], 0, 100, 0, 15, 10) == 10);
 });
 
 test('function obstacleBloqueChemin() test', t => {

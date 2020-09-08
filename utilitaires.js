@@ -36,7 +36,7 @@ function utilitaires() {
      *
      * @throws \Exception
      */
-    calculerDestinationLeftReelle: function(obstacles, dep_left, destination_left, top, hauteur, largeur) {
+    calculerDestinationLeftReelle: function(obstacles, dep_left, destination_left, top, hauteur, largeur, test_bottom = false) {
       // éviter de tout calculer si notre destination est égale à notre point
       // de départ.
       if (destination_left == dep_left) {
@@ -75,6 +75,11 @@ function utilitaires() {
           destination_left_reelle = destination_left_reelle_candidat
         }
       });
+
+      if (destination_left_reelle == destination_left && test_bottom == false) {
+        top = top + hauteur;
+        return this.calculerDestinationLeftReelle(obstacles, dep_left, destination_left, top, hauteur, largeur, true);
+      }
 
       return destination_left_reelle;
     },
