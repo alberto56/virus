@@ -37,13 +37,6 @@ function utilitaires() {
      * @throws \Exception
      */
     calculerDestinationLeftReelle: function(obstacles, dep_left, destination_left, top, hauteur, largeur) {
-      console.log("**** debut calculerDestinationLeftReelle ****");
-      console.log(obstacles);
-      console.log(dep_left);
-      console.log(destination_left);
-      console.log(top);
-      console.log(hauteur);
-      console.log(largeur);
       // éviter de tout calculer si notre destination est égale à notre point
       // de départ.
       if (destination_left == dep_left) {
@@ -55,14 +48,6 @@ function utilitaires() {
       obstacles.forEach(function (item, index) {
         var bottom = item.top + item.hauteur;
         var right = item.left + item.largeur;
-
-        console.log("dep_left: " + (dep_left + largeur));
-        console.log("top: " + top);
-        console.log("destination_left_reelle: " + destination_left_reelle);
-        console.log("item.top: " + item.top);
-        console.log("bottom: " + bottom);
-        console.log("item.left: " + item.left);
-        console.log("right: " + right);
 
         // Je recule
         if (dep_left > destination_left) {
@@ -90,9 +75,6 @@ function utilitaires() {
           destination_left_reelle = destination_left_reelle_candidat
         }
       });
-
-      console.log("**** fin calculerDestinationLeftReelle ****");
-      console.log(destination_left_reelle);
 
       return destination_left_reelle;
     },
@@ -149,7 +131,6 @@ function utilitaires() {
 
       // par exemple, r = 1077 + 0.
       var r = Math.min(depart.x, arrivee.x) + (Math.abs(arrivee.y - depart.y) * (x - Math.min(depart.x, arrivee.x)) / Math.abs(arrivee.x - depart.x));
-      // console.log(r);
       return r;
     },
 
@@ -177,31 +158,16 @@ function utilitaires() {
      *   Vrai si notre obstacle bloque notre chemin.
      */
     obstacleBloqueChemin: function (dep_x, dep_y, arr_x, arr_y, obst_top, obst_bottom, obst_left, obst_right) {
-      // console.log('******* obstacleBloqueChemin *******');
-      // console.log('dep_x: ' + dep_x)
-      // console.log('dep_y: ' + dep_y)
-      // console.log('arr_x: ' + arr_x)
-      // console.log('arr_y: ' + arr_y)
-      // console.log('obst_top: ' + obst_top)
-      // console.log('obst_bottom: ' + obst_bottom)
-      // console.log('obst_left: ' + obst_left)
-      // console.log('obst_right: ' + obst_right)
 
       // Si l'obstacle a un volume négatif, il ne nous bloque pas.
       if (obst_right < obst_left || obst_top > obst_bottom) {
-
-        console.log(186);
         return false;
       }
       if (obst_right < Math.min(dep_x, arr_x) || obst_left > Math.max(dep_x, arr_x)) {
-
-        console.log(186);
         return false;
       }
       //
       if (obst_bottom < Math.min(dep_y, arr_y) || obst_top > Math.max(dep_y, arr_y)) {
-
-        console.log(190);
         return false;
       }
       // Trouver l'intersection avec le bottom
@@ -210,13 +176,11 @@ function utilitaires() {
         var x = this.yCorrespondantAX({x: dep_y, y: dep_x}, {x: arr_y, y: arr_x}, obst_bottom);
 
         if (this.chiffreEntreDeuxChiffres(obst_left, obst_right, x)) {
-          console.log(200);
           return true;
         }
 
         var x = this.yCorrespondantAX({x: dep_y, y: dep_x}, {x: arr_y, y: arr_x}, obst_top);
         if (this.chiffreEntreDeuxChiffres(obst_left, obst_right, x)) {
-          console.log(206);
           return true;
         }
       }
@@ -227,18 +191,15 @@ function utilitaires() {
         var y = this.yCorrespondantAX({x: dep_x, y: dep_y}, {x: arr_x, y: arr_y}, obst_left);
 
         if (this.chiffreEntreDeuxChiffres(obst_top, obst_bottom, y)) {
-          console.log(217);
           return true;
         }
 
         var y = this.yCorrespondantAX({x: dep_x, y: dep_y}, {x: arr_x, y: arr_y}, obst_right);
         if (this.chiffreEntreDeuxChiffres(obst_top, obst_bottom, y)) {
-          console.log(223);
           return true;
         }
       }
 
-      console.log(228);
       return false;
     },
 
