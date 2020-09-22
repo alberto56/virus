@@ -91,8 +91,23 @@ function creerPoint(jeu, niveau) {
       this.setLeft(utilitaires().calculerDestinationLeftReelle(obstacles, dep_left, destination_left, top, this.objet.height(), this.objet.width()));
     },
 
-    setTopIfPossible: function(destination_top) {
-      this.setTop(destination_top);
+    setTopIfPossible: function(destination_top, dep_top, left) {
+      if (destination_top == dep_top) {
+        return;
+      }
+
+      var obstacles = [];
+      this.jeu.getObstacles().each(function () {
+        obstacles.push({
+          largeur: $(this).height(),
+          hauteur: $(this).width(),
+          top: $(this).position().left,
+          left: $(this).position().top
+        });
+      });
+
+      // obstacles, dep_left, destination_left, top, hauteur, largeur
+      this.setTop(utilitaires().calculerDestinationLeftReelle(obstacles, dep_top, destination_top, left, this.objet.width(), this.objet.height()));
     },
 
     /**
@@ -296,12 +311,12 @@ function creerPoint(jeu, niveau) {
       if(dir == 'up'){
         var top_a = this.objet.position().top;
         var top_b = top_a - this.niveau.vitessejoueur();
-        this.setTopIfPossible(top_b);
+        this.setTopIfPossible(top_b, top_a, this.objet.position().left);
       }
       if(dir == 'down'){
         var top_a = this.objet.position().top;
         var top_b = top_a + this.niveau.vitessejoueur();
-        this.setTopIfPossible(top_b);
+        this.setTopIfPossible(top_b, top_a, this.objet.position().left);
       }
       var that = this;
       setTimeout(function() {

@@ -63,6 +63,13 @@ var ControlleurFactory = (function () {
 
       jeu: false,
 
+      creerObstaclesrebords: function(niveau, thickness){
+        // (jeu, this, left, width, top, height)
+        creerObstacle(this.jeu, niveau, 0, thickness, 0, this.jeu.getBottom());
+        creerObstacle(this.jeu, niveau, thickness, this.jeu.getRight() - thickness*2, 0,  thickness);
+        creerObstacle(this.jeu, niveau, this.jeu.getRight() - thickness, thickness, 0, this.jeu.getBottom());
+        creerObstacle(this.jeu, niveau, thickness, this.jeu.getRight() - thickness*2, this.jeu.getBottom() - thickness,  thickness);},
+
       commencerNiveau: function(niveau) {
         this.niveauActuel = niveau;
 

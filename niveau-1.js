@@ -20,6 +20,7 @@ function niveau1() {
     this.objectifs = [
       objectifTemps(this),
     ];
+      controlleur().creerObstaclesrebords(this, 75);
   };
   objet.nombredePoints = function(){
     return 66;
