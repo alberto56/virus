@@ -54,8 +54,11 @@ var ControlleurFactory = (function () {
         var that = this;
         setTimeout(function() {
           var that2 = that;
-          $('.bouton-prochain-niveau').show().off().click(function() {
-            that2.commencerNiveau(niveau1());
+
+          var label = 'Recommencez au '+ that2.niveauActuel.getNom();
+
+          $('.game-over .bouton-prochain-niveau').html(label).show().off().click(function() {
+            that2.commencerNiveau(that2.niveauActuel);
             $('.cache-pour-une-seconde').hide();
           });
         }, 1050);
