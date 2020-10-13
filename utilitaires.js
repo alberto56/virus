@@ -233,6 +233,12 @@ function utilitaires() {
       return $('.infos .' + parametre).html();
     },
 
+    isDev: function() {
+      if(window.location.href.substring(0, 4) == "file") {
+        return true
+      }
+    },
+
     // afficher une information
     // parametre: le nom de la classe, sans point, par exemple:
     // "collectibles-restants".
