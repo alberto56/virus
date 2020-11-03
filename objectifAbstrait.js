@@ -11,12 +11,12 @@ function objectifAbstrait(niveau) {
     continuerJeu: function() {
       controlleur().montrerPanneau('prochain-niveau');
       var that = this;
+
+      this.niveau.niveauSuivant().setStatutAccessible(true);
+
       $('.bouton-niveau-suivant').off().click(function() {
-        console.log("L'objectif " + ran + " va continuer le jeu");
-        console.log(that.niveau);
-        console.log(that.niveau.getNom());
-        console.log(that.niveau.niveauSuivant().getNom());
         controlleur().commencerNiveau(that.niveau.niveauSuivant());
+
       });
     },
 

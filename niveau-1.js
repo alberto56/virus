@@ -55,10 +55,11 @@ function niveau1() {
   };
   objet.vitessejoueur = function() {
     return 10;
-  }
+  };
+  objet.statutAccessible = true;
   objet.collectibleretire = function() {
     // this.objectifCollectibles.recalculer(); ????
-  }
+  };
 
   return objet;
 }

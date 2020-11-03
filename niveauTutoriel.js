@@ -24,6 +24,9 @@ function niveauTutoriel1() {
   objet.niveauSuivant = function() {
     return niveauTutoriel2();
   };
+
+  objet.statutAccessible = true;
+
   objet.niveauPrecedent = function() {
     return false;
   };

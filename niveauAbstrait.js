@@ -9,6 +9,30 @@ function niveauAbstrait() {
       });
     },
 
+    setStatutAccessible: function(valeur) {
+      this.statutAccessible = valeur;
+    },
+
+    statutAccessible: false,
+
+    isAccessible: function(){
+      return this.statutAccessible;
+    },
+
+    boutonAssocier: function(bouton, controlleur){
+      var that = this;
+      if (that.isAccessible()) {
+        bouton.off().click(function() {
+          $('.selection-niveau .jeu').remove();
+          controlleur.commencerNiveau(that);
+        });
+      }
+      else {
+        bouton.attr("disabled", "disabled");
+      }
+
+    },
+
     collectibleretire: function() {
 
     }

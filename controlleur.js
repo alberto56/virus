@@ -31,26 +31,11 @@ var ControlleurFactory = (function () {
           $('.ecran-de-bienvenue .jeu').remove();
           that.montrerPanneau('selection-niveau');
         });
-        $('.bouton-niveau-1').off().click(function() {
-          $('.selection-niveau .jeu').remove();
-          that.commencerNiveau(niveau1());
-        });
-        $('.bouton-niveau-2').off().click(function() {
-          $('.selection-niveau .jeu').remove();
-          that.commencerNiveau(niveau2());
-        });
-        $('.bouton-niveau-3').off().click(function() {
-          $('.selection-niveau .jeu').remove();
-          that.commencerNiveau(niveau3());
-        });
-        $('.bouton-niveau-4').off().click(function() {
-          $('.selection-niveau .jeu').remove();
-          that.commencerNiveau(niveau4());
-        });
-        $('.bouton-niveau-5').off().click(function() {
-          $('.selection-niveau .jeu').remove();
-          that.commencerNiveau(niveau5());
-        });
+        niveau1().boutonAssocier($('.bouton-niveau-1'), this);
+        niveau2().boutonAssocier($('.bouton-niveau-2'), this);
+        niveau3().boutonAssocier($('.bouton-niveau-3'), this);
+        niveau4().boutonAssocier($('.bouton-niveau-4'), this);
+        niveau5().boutonAssocier($('.bouton-niveau-5'), this);
 
 
         for (i = 0; i < 10; ++i) {

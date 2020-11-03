@@ -234,9 +234,14 @@ function utilitaires() {
     },
 
     isDev: function() {
-      if(window.location.href.substring(0, 4) == "file") {
-        return true
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+
+      if (url.searchParams.get('simulate-not-dev')) {
+        return false;
       }
+
+      return window.location.href.substring(0, "file".length) == "file";
     },
 
     // afficher une information
