@@ -1,21 +1,39 @@
-function niveauTutoriel4() {
-  var objet = Object.create(niveauTutoriel3());
+var NiveauTutoriel4Factory = (function () {
+  var instance;
 
-  objet.getNom = function() {
-    return "Niveau Tutoriel 4";
-  };
-  objet.asymptomatique = function() {
-    return 50;
-  };
-  objet.instructions = function() {
-    return "Les points jaunes agissent de la même manière que les points verts mais ne changeront pas de couleurs lorsqu'ils seront infectés.";
-  };
-  objet.niveauSuivant = function() {
-    return niveauTutoriel5();
-  };
-  objet.niveauPrecedent = function() {
-    return niveauTutoriel3();
-  };
+  function createInstance() {
+    var objet = Object.create(niveauTutoriel3(true));
 
-  return objet;
+    objet.getNom = function() {
+      return "Niveau Tutoriel 4";
+    };
+    objet.asymptomatique = function() {
+      return 50;
+    };
+    objet.instructions = function() {
+      return "Les points jaunes agissent de la même manière que les points verts mais ne changeront pas de couleurs lorsqu'ils seront infectés.";
+    };
+    objet.niveauSuivant = function() {
+      return niveauTutoriel5();
+    };
+    objet.niveauPrecedent = function() {
+      return niveauTutoriel3();
+    };
+
+    return objet;
+
+  }
+
+  return {
+    instance: function (create_new) {
+      if (!instance || create_new) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+function niveauTutoriel4(create_new = false) {
+  return NiveauTutoriel4Factory.instance(create_new);
 }

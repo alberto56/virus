@@ -1,18 +1,36 @@
-function niveau3() {
-  var objet = Object.create(niveau2());
+var Niveau3Factory = (function () {
+  var instance;
 
-  objet.getNom = function() {
-    return "Niveau 3";
-  };
-  objet.niveauSuivant = function() {
-    return niveau4();
-  };
-  objet.niveauPrecedent = function() {
-    return niveau2();
-  };
-  objet.nombredePoints = function(){
-    return 80;
-  };
+  function createInstance() {
+    var objet = Object.create(niveau2(true));
 
-  return objet;
+    objet.getNom = function() {
+      return "Niveau 3";
+    };
+    objet.niveauSuivant = function() {
+      return niveau4();
+    };
+    objet.niveauPrecedent = function() {
+      return niveau2();
+    };
+    objet.nombredePoints = function(){
+      return 80;
+    };
+
+    return objet;
+
+  }
+
+  return {
+    instance: function (create_new) {
+      if (!instance || create_new) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+function niveau3(create_new = false) {
+  return Niveau3Factory.instance(create_new);
 }

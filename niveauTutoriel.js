@@ -1,35 +1,53 @@
-function niveauTutoriel1() {
-  var objet = Object.create(niveau1());
+var NiveauTutorielFactory = (function () {
+  var instance;
 
-  objet.getNom = function() {
-    return "Niveau Tutoriel 1";
-  };
-  objet.nombredePoints = function() {
-    return 0;
-  };
-  objet.instructions = function() {
-    return "Vous êtes le point blanc. Vous pouvez bouger avec les flèches.";
-  };
-  objet.tutoriel = function() {
-    return true;
-  };
-  objet.invincibleDebut = function() {
-    return 0;
-  };
-  objet.preparer = function(jeu) {
-    // left, width, top, height
-    creerObstacle(jeu, this, 300, 103, 503, 50);
-    creerObstacle(jeu, this, 800, 53, 43, 300);
-  };
-  objet.niveauSuivant = function() {
-    return niveauTutoriel2();
-  };
+  function createInstance() {
+    var objet = Object.create(niveau1(true));
 
-  objet.statutAccessible = true;
+    objet.getNom = function() {
+      return "Niveau Tutoriel 1";
+    };
+    objet.nombredePoints = function() {
+      return 0;
+    };
+    objet.instructions = function() {
+      return "Vous êtes le point blanc. Vous pouvez bouger avec les flèches.";
+    };
+    objet.tutoriel = function() {
+      return true;
+    };
+    objet.invincibleDebut = function() {
+      return 0;
+    };
+    objet.preparer = function(jeu) {
+      // left, width, top, height
+      creerObstacle(jeu, this, 300, 103, 503, 50);
+      creerObstacle(jeu, this, 800, 53, 43, 300);
+    };
+    objet.niveauSuivant = function() {
+      return niveauTutoriel2();
+    };
 
-  objet.niveauPrecedent = function() {
-    return false;
+    objet.statutAccessible = true;
+
+    objet.niveauPrecedent = function() {
+      return false;
+    };
+
+    return objet;
+
+  }
+
+  return {
+    instance: function (create_new) {
+      if (!instance || create_new) {
+        instance = createInstance();
+      }
+      return instance;
+    }
   };
+})();
 
-  return objet;
+function niveauTutoriel1(create_new = false) {
+  return NiveauTutorielFactory.instance(create_new);
 }

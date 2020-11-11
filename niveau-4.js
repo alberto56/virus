@@ -1,27 +1,45 @@
-function niveau4() {
-  var objet = Object.create(niveau3());
+var Niveau4Factory = (function () {
+  var instance;
 
-  objet.getNom = function() {
-    return "Niveau 4";
-  };
-  objet.niveauSuivant = function() {
-    return niveau5();
-  };
-  objet.niveauPrecedent = function() {
-    return niveau3();
-  };
-  objet.nombredePoints = function(){
-    return 100;
-  };
-  objet.infectes = function(){
-    return 20;
-  };
-  objet.preparer = function(jeu) {
-    creerCollectibleAvancerTemps(jeu, objet);
-    this.objectifs = [
-      objectifTemps(this),
-    ];
+  function createInstance() {
+    var objet = Object.create(niveau3(true));
+
+    objet.getNom = function() {
+      return "Niveau 4";
+    };
+    objet.niveauSuivant = function() {
+      return niveau5();
+    };
+    objet.niveauPrecedent = function() {
+      return niveau3();
+    };
+    objet.nombredePoints = function(){
+      return 100;
+    };
+    objet.infectes = function(){
+      return 20;
+    };
+    objet.preparer = function(jeu) {
+      creerCollectibleAvancerTemps(jeu, objet);
+      this.objectifs = [
+        objectifTemps(this),
+      ];
+    }
+
+    return objet;
+
   }
 
-  return objet;
+  return {
+    instance: function (create_new) {
+      if (!instance || create_new) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+function niveau4(create_new = false) {
+  return Niveau4Factory.instance(create_new);
 }

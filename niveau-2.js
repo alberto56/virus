@@ -2,7 +2,7 @@ var Niveau2Factory = (function () {
   var instance;
 
   function createInstance() {
-    var objet = Object.create(niveau1());
+    var objet = Object.create(niveau1(true));
 
     objet.getNom = function() {
       return "Niveau 2";
@@ -22,8 +22,8 @@ var Niveau2Factory = (function () {
   }
 
   return {
-    instance: function () {
-      if (!instance) {
+    instance: function (create_new) {
+      if (!instance || create_new) {
         instance = createInstance();
       }
       return instance;
@@ -31,6 +31,6 @@ var Niveau2Factory = (function () {
   };
 })();
 
-function niveau2() {
-  return Niveau2Factory.instance();
+function niveau2(create_new = false) {
+  return Niveau2Factory.instance(create_new);
 }

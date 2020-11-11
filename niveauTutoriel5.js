@@ -1,32 +1,50 @@
-function niveauTutoriel5() {
-  var objet = Object.create(niveauTutoriel3());
+var NiveauTutoriel5Factory = (function () {
+  var instance;
 
-  objet.getNom = function() {
-    return "Niveau Tutoriel 5";
-  };
-  objet.nombredePoints = function() {
-    return 0;
-  };
-  objet.instructions = function() {
-    return "Vous aurez besoin, parfois, de collecter des objets qui vous permettront de compléter le niveau.";
-  };
-  objet.niveauSuivant = function() {
-    return niveauBienvenue();
-  };
-  objet.niveauPrecedent = function() {
-    return niveauTutoriel4();
-  };
-  objet.preparer = function(jeu) {
-    creerCollectibleAvancerTemps(jeu, this);
-    creerCollectibleAvancerTemps(jeu, this);
-    creerCollectibleAvancerTemps(jeu, this);
-    creerCollectibleAvancerTemps(jeu, this);
-    creerCollectibleAvancerTemps(jeu, this);
-    creerCollectibleAvancerTemps(jeu, this);
+  function createInstance() {
+    var objet = Object.create(niveauTutoriel3(true));
 
-    var c = creerCollectibleAvancerTemps(jeu, this);
-    c.reapparaitre(3000, 3000)
-  };
+    objet.getNom = function() {
+      return "Niveau Tutoriel 5";
+    };
+    objet.nombredePoints = function() {
+      return 0;
+    };
+    objet.instructions = function() {
+      return "Vous aurez besoin, parfois, de collecter des objets qui vous permettront de compléter le niveau.";
+    };
+    objet.niveauSuivant = function() {
+      return niveauBienvenue();
+    };
+    objet.niveauPrecedent = function() {
+      return niveauTutoriel4();
+    };
+    objet.preparer = function(jeu) {
+      creerCollectibleAvancerTemps(jeu, this);
+      creerCollectibleAvancerTemps(jeu, this);
+      creerCollectibleAvancerTemps(jeu, this);
+      creerCollectibleAvancerTemps(jeu, this);
+      creerCollectibleAvancerTemps(jeu, this);
+      creerCollectibleAvancerTemps(jeu, this);
 
-  return objet;
+      var c = creerCollectibleAvancerTemps(jeu, this);
+      c.reapparaitre(3000, 3000)
+    };
+
+    return objet;
+
+  }
+
+  return {
+    instance: function (create_new) {
+      if (!instance || create_new) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+function niveauTutoriel5(create_new = false) {
+  return NiveauTutoriel5Factory.instance(create_new);
 }

@@ -1,25 +1,42 @@
-function niveauTutoriel2() {
-  var objet = Object.create(niveauTutoriel1());
+var NiveauTutoriel2Factory = (function () {
+  var instance;
 
-  objet.getNom = function() {
-    return "Niveau Tutoriel 2";
-  };
-  objet.nombredePoints = function() {
-    return 1;
-  };
-  objet.infectes = function() {
-    return 1;
-  };
-  objet.instructions = function() {
-    return "Les points rouges sont contagieux. Évitez-les ou ils vont vous infecter.";
-  };
-  objet.niveauSuivant = function() {
-    return niveauTutoriel3();
-  };
-  objet.niveauPrecedent = function() {
-    return niveauTutoriel1();
-  };
+  function createInstance() {
+    var objet = Object.create(niveauTutoriel1(true));
 
-  
-  return objet;
+    objet.getNom = function() {
+      return "Niveau Tutoriel 2";
+    };
+    objet.nombredePoints = function() {
+      return 1;
+    };
+    objet.infectes = function() {
+      return 1;
+    };
+    objet.instructions = function() {
+      return "Les points rouges sont contagieux. Évitez-les ou ils vont vous infecter.";
+    };
+    objet.niveauSuivant = function() {
+      return niveauTutoriel3();
+    };
+    objet.niveauPrecedent = function() {
+      return niveauTutoriel1();
+    };
+
+    return objet;
+
+  }
+
+  return {
+    instance: function (create_new) {
+      if (!instance || create_new) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+function niveauTutoriel2(create_new = false) {
+  return NiveauTutoriel2Factory.instance(create_new);
 }

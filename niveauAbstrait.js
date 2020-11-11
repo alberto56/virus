@@ -11,6 +11,7 @@ function niveauAbstrait() {
 
     setStatutAccessible: function(valeur) {
       this.statutAccessible = valeur;
+      controlleur().associerBoutons();
     },
 
     statutAccessible: false,
@@ -22,9 +23,11 @@ function niveauAbstrait() {
     boutonAssocier: function(bouton, controlleur){
       var that = this;
       if (that.isAccessible()) {
+        bouton.removeAttr("disabled");
         bouton.off().click(function() {
           $('.selection-niveau .jeu').remove();
           controlleur.commencerNiveau(that);
+
         });
       }
       else {
