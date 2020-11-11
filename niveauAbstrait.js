@@ -22,12 +22,13 @@ function niveauAbstrait() {
 
     boutonAssocier: function(bouton, controlleur){
       var that = this;
+      bouton.off().click(function() {
+        $('.selection-niveau .jeu').remove();
+        controlleur.commencerNiveau(that);
+      });
       if (that.isAccessible()) {
         bouton.removeAttr("disabled");
-        bouton.off().click(function() {
-          $('.selection-niveau .jeu').remove();
-          controlleur.commencerNiveau(that);
-        });
+        bouton.html(that.getNom());
       }
       else {
         this.boutonDesactiver(bouton);
@@ -36,7 +37,7 @@ function niveauAbstrait() {
 
     boutonDesactiver: function(bouton) {
       if (utilitaires().isDev()){
-
+        bouton.html(this.getNom() + " (désactivé)");
       }
       else {
         bouton.attr("disabled", "disabled");
