@@ -40,8 +40,11 @@ var NiveauTutorielFactory = (function () {
 
   return {
     instance: function (create_new) {
-      if (!instance || create_new) {
+      if (!instance) {
         instance = createInstance();
+      }
+      if (create_new) {
+        return createInstance();
       }
       return instance;
     }

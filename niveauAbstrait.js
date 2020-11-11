@@ -27,13 +27,15 @@ function niveauAbstrait() {
         bouton.off().click(function() {
           $('.selection-niveau .jeu').remove();
           controlleur.commencerNiveau(that);
-
         });
       }
       else {
-        bouton.attr("disabled", "disabled");
+        this.boutonDesactiver(bouton);
       }
+    },
 
+    boutonDesactiver: function(bouton) {
+      bouton.attr("disabled", "disabled");
     },
 
     collectibleretire: function() {
