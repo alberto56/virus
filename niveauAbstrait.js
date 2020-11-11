@@ -35,7 +35,12 @@ function niveauAbstrait() {
     },
 
     boutonDesactiver: function(bouton) {
-      bouton.attr("disabled", "disabled");
+      if (utilitaires().isDev()){
+
+      }
+      else {
+        bouton.attr("disabled", "disabled");
+      }
     },
 
     collectibleretire: function() {
