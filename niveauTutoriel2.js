@@ -14,7 +14,7 @@ var NiveauTutoriel2Factory = (function () {
       return 1;
     };
     objet.instructions = function() {
-      return "Les points rouges sont contagieux. Évitez-les ou ils vont vous infecter.";
+      return "Les points rouges sont contagieux. Evitez-les ou ils vont vous infecter.";
     };
     objet.niveauSuivant = function() {
       return niveauTutoriel3();

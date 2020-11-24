@@ -1,5 +1,16 @@
+@font-face {
+  font-family: 'karmatic';
+  src: url('fonts/ka1.ttf') format('truetype');
+}
+* {
+  font-family: 'karmatic', courier;
+}
 .titre {
   color: green;
+  text-align: center;
+  padding: 30px;
+  font-size: 3em;
+
 }
 .game-over .titre {
   color: white;
@@ -56,4 +67,15 @@
 .obstacle {
   background: blue;
   opacity: 0.5;
+}
+.icon {
+  height: 34px;
+  width: 34px;
+  background: url(images/icons.png);
+}
+.icon-sword {
+  background-position: 348px 2px;
+}
+.icon-house {
+  background-position: 162px 425px;
 }

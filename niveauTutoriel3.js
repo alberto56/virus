@@ -14,7 +14,7 @@ var NiveauTutoriel3Factory = (function () {
       return 1;
     };
     objet.instructions = function() {
-      return "Les points verts sont inoffensifs mais peuvent se faire infecter en passant à proximité des points rouges et vont à leur tour devenir contagieux.";
+      return "Les points verts sont inoffensifs mais peuvent se faire infecter en passant a proximite des points rouges et vont a leur tour devenir contagieux.";
     };
     objet.niveauSuivant = function() {
       return niveauTutoriel4();

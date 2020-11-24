@@ -1,7 +1,7 @@
 function objectifAbstrait(niveau) {
   var ran = Math.random();
 
-  console.log("Je crée un objectif pour niveau " + niveau.getNom() + ", son identité est " + ran)
+  console.log("Je cree un objectif pour niveau " + niveau.getNom() + ", son identite est " + ran)
 
   return {
     niveau: niveau,

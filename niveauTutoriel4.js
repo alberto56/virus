@@ -11,7 +11,7 @@ var NiveauTutoriel4Factory = (function () {
       return 50;
     };
     objet.instructions = function() {
-      return "Les points jaunes agissent de la même manière que les points verts mais ne changeront pas de couleurs lorsqu'ils seront infectés.";
+      return "Les points jaunes agissent de la même maniere que les points verts mais ne changeront pas de couleurs lorsqu'ils seront infectes.";
     };
     objet.niveauSuivant = function() {
       return niveauTutoriel5();

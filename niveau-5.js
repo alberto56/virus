@@ -22,7 +22,7 @@ var Niveau5Factory = (function () {
     objet.objectifCollectibles = objectifCollectibles(objet);
     objet.preparer = function(jeu) {
       // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
-      // nouvelles fonctionalités comme des collectibles ou autres...
+      // nouvelles fonctionalites comme des collectibles ou autres...
       creerCollectible(jeu, this).bouger($('.panneau-jeu'));
       creerCollectible(jeu, this).bouger($('.panneau-jeu'));
       creerCollectible(jeu, this).bouger($('.panneau-jeu'));

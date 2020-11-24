@@ -47,32 +47,32 @@ function creerPoint(jeu, niveau) {
      * Positionner le point gauche mais seulement si c'est possible.
      *
      * Par exemple, s'il n'y a pas d'obstacle entre le depart et la
-     * destination, nous positionnerons l'item à la destination.
+     * destination, nous positionnerons l'item a la destination.
      *
-     * S'il existe un obstacle entre le départ et la destination, le point
-     * avancera jusqu'à l'obstacle. Ceci veut dire que:
+     * S'il existe un obstacle entre le depart et la destination, le point
+     * avancera jusqu'a l'obstacle. Ceci veut dire que:
      *
-     * * Si la destination est supérieure au départ: la gauche du point sera
-     *   équivalent de la gauche de l'obstacle moins la largeur du point.
-     * * Si la destination est inférieure au départ: la gauche du point sera
-     *   équivalent de la droite de l'obstacle.
-     * * Si la destination est égale au départ: rien n'est fait.
+     * * Si la destination est superieure au depart: la gauche du point sera
+     *   equivalent de la gauche de l'obstacle moins la largeur du point.
+     * * Si la destination est inferieure au depart: la gauche du point sera
+     *   equivalent de la droite de l'obstacle.
+     * * Si la destination est egale au depart: rien n'est fait.
      *
      * Cette fonction ne retourne pas de valeur.
      *
      * @param destination_left
-     *   Là où le point veut aller. Il ne s'y rendra pas nécessairement, par
+     *   La où le point veut aller. Il ne s'y rendra pas necessairement, par
      *   exemple s'il y a un obstacle dans son chemin.
      * @param dep_left
      *   La où le point commence (sa position actuelle).
      * @param top
-     *   La position verticale du point, ou le haut du point, tant à son départ
-     *   qu'à son arrivée, puisque cette fonction est conçue pour des
-     *   déplacements en ligne droite seulement.
+     *   La position verticale du point, ou le haut du point, tant a son depart
+     *   qu'a son arrivee, puisque cette fonction est conçue pour des
+     *   deplacements en ligne droite seulement.
      */
     setLeftIfPossible: function(destination_left, dep_left, top) {
-      // éviter de tout calculer si notre destination est égale à notre point
-      // de départ.
+      // eviter de tout calculer si notre destination est egale a notre point
+      // de depart.
       if (destination_left == dep_left) {
         return;
       }
@@ -160,7 +160,7 @@ function creerPoint(jeu, niveau) {
         return;
       }
 
-      // à ce stade nous sommes invincible.
+      // a ce stade nous sommes invincible.
 
       if (this.objet.attr('data-clignotement') == 'visible') {
         this.objet.css('background-color', 'transparent');

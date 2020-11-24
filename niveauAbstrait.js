@@ -37,7 +37,7 @@ function niveauAbstrait() {
 
     boutonDesactiver: function(bouton) {
       if (utilitaires().isDev()){
-        bouton.html(this.getNom() + " (désactivé)");
+        bouton.html(this.getNom() + " (desactive)");
       }
       else {
         bouton.attr("disabled", "disabled");

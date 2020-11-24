@@ -16,7 +16,7 @@ function utilitaires() {
     },
 
     /**
-     * Calculer une destination horizontale réelle.
+     * Calculer une destination horizontale reelle.
      *
      * @param obstacles
      *   Une liste d'obstacles, chacune ayant largeur, hauteur, top et left.
@@ -32,13 +32,13 @@ function utilitaires() {
      *   Largeur du joueur.
      *
      * @return
-     *   Une destination left où on devrait réellement aller.
+     *   Une destination left où on devrait reellement aller.
      *
      * @throws \Exception
      */
     calculerDestinationLeftReelle: function(obstacles, dep_left, destination_left, top, hauteur, largeur, test_bottom = false) {
-      // éviter de tout calculer si notre destination est égale à notre point
-      // de départ.
+      // eviter de tout calculer si notre destination est egale a notre point
+      // de depart.
       if (destination_left == dep_left) {
         return destination_left;
       }
@@ -121,10 +121,10 @@ function utilitaires() {
     },
 
     // Par exemple, si
-    // départ est {x: 1077, y: 155}
-    // arrivée est {x: 1127, y: 155}
+    // depart est {x: 1077, y: 155}
+    // arrivee est {x: 1127, y: 155}
     // et x est 1110
-    // je m'attends à la réponse 155.
+    // je m'attends a la reponse 155.
     yCorrespondantAX: function(depart, arrivee, x) {
       if (arrivee.x == depart.x) {
         throw "impossible"
@@ -140,16 +140,16 @@ function utilitaires() {
     },
 
     /**
-     * Vérifie si un obstabcle bloque notre chemin.
+     * Verifie si un obstabcle bloque notre chemin.
      *
      * @param dep_x
-     *   Les coordonnées x de notre point de départ.
+     *   Les coordonnees x de notre point de depart.
      * @param dep_y
-     *   Les coordonnées y de notre point de départ.
+     *   Les coordonnees y de notre point de depart.
      * @param arr_x
-     *   Là où on veut aller (coordonnées x).
+     *   La où on veut aller (coordonnees x).
      * @param arr_y
-     *   Là où on veut aller (coordonnées y).
+     *   La où on veut aller (coordonnees y).
      * @param obst_top
      *   Le top de notre obstacle.
      * @param obst_bottom
@@ -164,7 +164,7 @@ function utilitaires() {
      */
     obstacleBloqueChemin: function (dep_x, dep_y, arr_x, arr_y, obst_top, obst_bottom, obst_left, obst_right) {
 
-      // Si l'obstacle a un volume négatif, il ne nous bloque pas.
+      // Si l'obstacle a un volume negatif, il ne nous bloque pas.
       if (obst_right < obst_left || obst_top > obst_bottom) {
         return false;
       }
@@ -191,7 +191,7 @@ function utilitaires() {
       }
 
       if (dep_x !== arr_x) {
-        // Par exemple, pour 1077, 155, 1127, 155, avec 1110, je m'attends à
+        // Par exemple, pour 1077, 155, 1127, 155, avec 1110, je m'attends a
         // la reponse 155.
         var y = this.yCorrespondantAX({x: dep_x, y: dep_y}, {x: arr_x, y: arr_y}, obst_left);
 

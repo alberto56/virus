@@ -11,7 +11,7 @@ var NiveauTutoriel5Factory = (function () {
       return 0;
     };
     objet.instructions = function() {
-      return "Vous aurez besoin, parfois, de collecter des objets qui vous permettront de compléter le niveau.";
+      return "Vous aurez besoin, parfois, de collecter des objets qui vous permettront de completer le niveau.";
     };
     objet.niveauSuivant = function() {
       return niveauBienvenue();

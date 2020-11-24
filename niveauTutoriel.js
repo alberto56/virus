@@ -11,7 +11,7 @@ var NiveauTutorielFactory = (function () {
       return 0;
     };
     objet.instructions = function() {
-      return "Vous êtes le point blanc. Vous pouvez bouger avec les flèches.";
+      return "Vous êtes le point blanc. Vous pouvez bouger avec les fleches.";
     };
     objet.tutoriel = function() {
       return true;
