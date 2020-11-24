@@ -6,14 +6,8 @@ var ControlleurFactory = (function () {
       niveauActuel: niveau1(),
 
       commencerJeu: function() {
-        this.montrerPanneau('ecran-de-bienvenue');
+        this.montrerEcranBienvenue();
         accepterBarreEspacement();
-
-        var jeuDeBienvenue = creerNouveauJeu('.jeu', {
-          getNom: function() {
-            return 'Bienvenue';
-          }
-        }, '.ecran-de-bienvenue');
 
         $('.ecran-de-bienvenue .jeu .infos').remove();
         $('.ecran-de-bienvenue .jeu').css('background', 'none');
@@ -27,16 +21,29 @@ var ControlleurFactory = (function () {
           $('.ecran-de-bienvenue .jeu').remove();
           that.commencerNiveau(niveauTutoriel1());
         });
+        $('.bouton-menu').off().click(function() {
+          that.montrerEcranBienvenue();
+        });
         $('.bouton-selection-niveau').off().click(function() {
           $('.ecran-de-bienvenue .jeu').remove();
           that.montrerPanneau('selection-niveau');
         });
 
         this.associerBoutons();
+      },
 
+      jeuDeBienvenue: creerNouveauJeu('.jeu', {
+        getNom: function() {
+          return 'Bienvenue';
+        }
+      }, '.ecran-de-bienvenue'),
+
+      montrerEcranBienvenue: function() {
+        this.montrerPanneau('ecran-de-bienvenue');
 
         for (i = 0; i < 10; ++i) {
-          var point = creerPoint(jeuDeBienvenue, niveauBienvenue());
+
+          var point = creerPoint(this.jeuDeBienvenue, niveauBienvenue());
           point.creerNouveau();
           point.objet.css('height', '52px');
           point.objet.css('width', '52px');
