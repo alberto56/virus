@@ -45,10 +45,7 @@ var ControlleurFactory = (function () {
 
           var point = creerPoint(this.jeuDeBienvenue, niveauBienvenue());
           point.creerNouveau();
-          point.objet.css('height', '52px');
-          point.objet.css('width', '52px');
-          point.objet.css('background', 'none');
-          point.objet.css('background-image', 'url(images/virus-rose.png)');
+          point.objet.addClass('point-de-bienvenue');
           point.objet.attr('data-vitesse', 1);
           point.placerAleatoire();
           point.choisirDestination();

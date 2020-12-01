@@ -69,13 +69,36 @@
   opacity: 0.5;
 }
 .icon {
-  height: 34px;
-  width: 34px;
-  background: url(images/icons.png);
+  height: 52px;
+  width: 52px;
+  background: url(images/sprite.png);
+  text-indent: -20000px;
+  border: none;
 }
-.icon-sword {
-  background-position: 348px 2px;
+.icon-play {
+  background-position: 0px -52px;
 }
-.icon-house {
-  background-position: 162px 425px;
+.icon-play:hover {
+  background-position: 52px -52px;
+}
+.icon-menu {
+  background-position: 0px -104px;
+}
+.icon-menu:hover {
+  background-position: 52px -104px;
+}
+.point-de-bienvenue {
+  height: 52px !important;
+  width: 52px !important;
+  background: url(images/sprite.png);
+}
+
+/* https://www.w3schools.com/howto/howto_css_center_button.asp */
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
