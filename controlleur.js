@@ -102,6 +102,8 @@ var ControlleurFactory = (function () {
           return;
         }
 
+        niveau.commencerMusique();
+
         this.montrerPanneau('panneau-jeu');
         $('.panneau-jeu .jeu').remove();
         this.jeu = creerNouveauJeu('.jeu', niveau);

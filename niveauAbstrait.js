@@ -35,6 +35,24 @@ function niveauAbstrait() {
       }
     },
 
+    getMusique: function() {},
+
+    audio: null,
+
+    commencerMusique: function(){
+      var musique = this.getMusique();
+      if (musique) {
+        this.audio = new Audio(musique);
+        this.audio.play();
+      }
+    },
+
+    stopMusique: function(){
+      if (this.audio) {
+        this.audio.stop();
+      }
+    },
+
     boutonDesactiver: function(bouton) {
       if (utilitaires().isDev()){
         bouton.html(this.getNom() + " (desactive)");
