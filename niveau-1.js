@@ -61,7 +61,9 @@ var Niveau1Factory = (function () {
     };
     objet.statutAccessible = true;
     objet.collectibleretire = function() {
-      // this.objectifCollectibles.recalculer(); ????
+      // Recalculer le nombre de collectibles restants pour permettre de
+      // compléter l'objectif "collectible".
+      this.objectifCollectibles.recalculer();
     };
 
     return objet;
