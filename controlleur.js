@@ -57,6 +57,7 @@ var ControlleurFactory = (function () {
         $('.panneau-jeu .jeu').remove();
         $('.panneau').hide();
         $('.' + panneau).show();
+        this.niveauActuel.stopMusique()
       },
 
       gameOver: function() {
