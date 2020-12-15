@@ -40,17 +40,13 @@ function niveauAbstrait() {
     audio: null,
 
     commencerMusique: function(){
-      var musique = this.getMusique();
-      if (musique) {
-        this.audio = new Audio(musique);
-        this.audio.play();
-      }
+      musique().play(this.getMusique())
     },
 
     stopMusique: function(){
-      if (this.audio) {
-        this.audio.stop();
-      }
+      // if (this.audio) {
+      //   this.audio.pause();
+      // }
     },
 
     boutonDesactiver: function(bouton) {
