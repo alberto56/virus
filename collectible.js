@@ -1,6 +1,10 @@
 function creerCollectible(jeu, niveau) {
   var objet = Object.create(creerPoint(jeu, niveau));
 
+  objet.effetSonore = function() {
+    return 'audio/Bell1.wav';
+  }
+
   objet.utiliserBalise($('.collectible.modele').clone().removeClass('modele'));
   objet.placerAleatoire();
 
@@ -17,11 +21,11 @@ function creerCollectible(jeu, niveau) {
     var that=this
     utilitaires().trouverVoisins(top, left, this.rayon_infection, '.point[data-joueur=oui]').each(function() {
       that.activer()
+      effetsSonores().play(that.effetSonore())
       that.objet.remove()
       niveau.collectibleretire()
     });
   };
-
 
   objet.reapparaitre = function(apparaitre, disparaitre) {
     var attente = this.objet.css("opacity") == 1 ? disparaitre : apparaitre;

@@ -22,7 +22,7 @@ function niveauAbstrait() {
 
     boutonAssocier: function(bouton, controlleur){
       var that = this;
-      bouton.off().click(function() {
+      bouton.click(function() {
         $('.selection-niveau .jeu').remove();
         controlleur.commencerNiveau(that);
       });

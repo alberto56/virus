@@ -14,6 +14,7 @@ var MusiqueFactory = (function () {
 
     objet.prePlay = function(audio) {
       this.pause()
+      audio.loop = true
       this.audio = audio
     };
 

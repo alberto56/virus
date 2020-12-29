@@ -200,11 +200,16 @@ function creerPoint(jeu, niveau) {
       }
     },
 
+    effetSonore: function() {
+      return 'audio/Impact7.wav';
+    },
+
     infecter: function(chance) {
       if (Math.random() < chance) {
         if (this.objet.attr('data-joueur') == 'oui') {
           if (this.objet.attr('data-invincible') == 'non') {
             this.devenirInvincible(3000);
+            effetsSonores().play(this.effetSonore())
             nombredevies=utilitaires().getInfo('nombre-de-vies');
             utilitaires().setInfo('nombre-de-vies', --nombredevies)
             if (nombredevies==0)  {

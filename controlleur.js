@@ -13,21 +13,6 @@ var ControlleurFactory = (function () {
         $('.ecran-de-bienvenue .jeu').css('background', 'none');
 
         var that = this;
-        $('.bouton-prochain-niveau').off().click(function() {
-          $('.ecran-de-bienvenue .jeu').remove();
-          that.commencerNiveau(niveau1());
-        });
-        $('.bouton-niveau-tutoriel').off().click(function() {
-          $('.ecran-de-bienvenue .jeu').remove();
-          that.commencerNiveau(niveauTutoriel1());
-        });
-        $('.bouton-menu').off().click(function() {
-          that.montrerEcranBienvenue();
-        });
-        $('.bouton-selection-niveau').off().click(function() {
-          $('.ecran-de-bienvenue .jeu').remove();
-          that.montrerPanneau('selection-niveau');
-        });
 
         this.associerBoutons();
       },
@@ -62,7 +47,8 @@ var ControlleurFactory = (function () {
 
       gameOver: function() {
         this.montrerPanneau('game-over');
-
+        effetsSonores().play('audio/OldSchool44.wav');
+        musique().pause();
         var that = this;
         setTimeout(function() {
           var that2 = that;
@@ -86,14 +72,30 @@ var ControlleurFactory = (function () {
         creerObstacle(this.jeu, niveau, thickness, this.jeu.getRight() - thickness*2, this.jeu.getBottom() - thickness,  thickness);},
 
       associerBoutons: function(){
+        var that = this
+        $('button').off().click(function() {effetsSonores().play('audio/Click1.wav')})
+        $('.bouton-prochain-niveau').click(function() {
+          $('.ecran-de-bienvenue .jeu').remove();
+          that.commencerNiveau(niveau1());
+        });
+        $('.bouton-niveau-tutoriel').click(function() {
+          $('.ecran-de-bienvenue .jeu').remove();
+          that.commencerNiveau(niveauTutoriel1());
+        });
+        $('.bouton-menu').click(function() {
+          that.montrerEcranBienvenue();
+        });
+        $('.bouton-selection-niveau').click(function() {
+          $('.ecran-de-bienvenue .jeu').remove();
+          that.montrerPanneau('selection-niveau');
+        });
+        niveau1().boutonAssocier($('.bouton-niveau-1'), this);
+        niveau2().boutonAssocier($('.bouton-niveau-2'), this);
+        niveau3().boutonAssocier($('.bouton-niveau-3'), this);
+        niveau4().boutonAssocier($('.bouton-niveau-4'), this);
+        niveau5().boutonAssocier($('.bouton-niveau-5'), this);
 
-          niveau1().boutonAssocier($('.bouton-niveau-1'), this);
-          niveau2().boutonAssocier($('.bouton-niveau-2'), this);
-          niveau3().boutonAssocier($('.bouton-niveau-3'), this);
-          niveau4().boutonAssocier($('.bouton-niveau-4'), this);
-          niveau5().boutonAssocier($('.bouton-niveau-5'), this);
-
-        },
+      },
 
       commencerNiveau: function(niveau) {
         this.niveauActuel = niveau;

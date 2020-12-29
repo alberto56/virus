@@ -19,7 +19,6 @@ var Niveau5Factory = (function () {
     objet.infectes = function(){
       return 20;
     };
-    objet.objectifCollectibles = objectifCollectibles(objet);
     objet.preparer = function(jeu) {
       // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
       // nouvelles fonctionalites comme des collectibles ou autres...
