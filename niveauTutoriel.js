@@ -28,6 +28,10 @@ var NiveauTutorielFactory = (function () {
       return niveauTutoriel2();
     };
 
+    objet.getMusique = function() {
+      return 'audio/Detective.wav';
+    },
+
     objet.statutAccessible = true;
 
     objet.niveauPrecedent = function() {

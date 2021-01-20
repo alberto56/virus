@@ -16,6 +16,10 @@ function niveauAbstrait() {
 
     statutAccessible: false,
 
+    getMusique: function() {
+      return 'audio/blazer.wav';
+    },
+
     isAccessible: function(){
       return this.statutAccessible;
     },
@@ -34,8 +38,6 @@ function niveauAbstrait() {
         this.boutonDesactiver(bouton);
       }
     },
-
-    getMusique: function() {},
 
     audio: null,
 

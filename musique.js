@@ -13,9 +13,20 @@ var MusiqueFactory = (function () {
     objet.audio = false;
 
     objet.prePlay = function(audio) {
-      this.pause()
-      audio.loop = true
-      this.audio = audio
+      if (!this.audio) {
+        audio.loop = true;
+        this.audio = audio;
+        return true;
+      }
+
+      if(audio.getAttribute('src') == this.audio.getAttribute('src')) {
+        return false;
+      }
+
+      this.pause();
+      audio.loop = true;
+      this.audio = audio;
+      return true;
     };
 
     return objet;

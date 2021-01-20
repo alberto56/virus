@@ -4,10 +4,6 @@ var Niveau3Factory = (function () {
   function createInstance() {
     var objet = Object.create(niveau2(true));
 
-    objet.getMusique = function() {
-      return 'audio/blazer.wav';
-    };
-
     objet.getNom = function() {
       return "Niveau 3";
     };

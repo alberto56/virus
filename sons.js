@@ -5,15 +5,16 @@ function sons(){
     play: function(fichier) {
       var audio = new Audio(fichier);
 
-      this.prePlay(audio);
-
-      audio.play();
+      if(this.prePlay(audio)){
+        audio.play();
+      }
     },
 
     // objet audio,
     // exemple: new Audio('audio/blazer.wav')
+    // retourner true si la musique doit être jouée
     prePlay: function(audio) {
-      // Ne rien faire.
+      return true;
     }
   }
 }
