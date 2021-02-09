@@ -2,6 +2,8 @@ function creerPoint(jeu, niveau) {
   return {
     attente: 50,
 
+    retire: false,
+
     largeur: function() {
       return this.objet.width();
     },
@@ -261,7 +263,7 @@ function creerPoint(jeu, niveau) {
 
         this.infecterVoisins();
       }
-      if (contexte.is(":visible")) {
+      if (contexte.is(":visible") && !this.retire) {
         var that = this;
         setTimeout(function() {
           that.bouger(contexte);
