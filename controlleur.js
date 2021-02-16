@@ -114,7 +114,12 @@ var ControlleurFactory = (function () {
 
         if (utilitaires().isDev()) {
           niveau.fonctionsDev().forEach(function(item, index){
-            $('.boutons-dev').append("<button>" + item.etiquetteBouton() + "</button>").click(function() { item.action(); });
+            var classe_bouton = "bouton-" + Math.floor(Math.random() * 1000000000000000000000);
+            $('.boutons-dev').append('<button class="' + classe_bouton + '">' + item.etiquetteBouton() + "</button>");
+
+            $('.boutons-dev .' + classe_bouton).click(function() {
+              item.action();
+            });
           });
         }
 
