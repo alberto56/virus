@@ -16,6 +16,9 @@ var NiveauTutorielFactory = (function () {
     objet.tutoriel = function() {
       return true;
     };
+    objet.fonctionsDev = function() {
+      return [];
+    };
     objet.invincibleDebut = function() {
       return 0;
     };

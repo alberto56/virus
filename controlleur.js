@@ -43,6 +43,7 @@ var ControlleurFactory = (function () {
         $('.panneau').hide();
         $('.' + panneau).show();
         this.niveauActuel.stopMusique()
+        $('.boutons-dev').empty()
       },
 
       gameOver: function() {
@@ -110,6 +111,12 @@ var ControlleurFactory = (function () {
         this.montrerPanneau('panneau-jeu');
         $('.panneau-jeu .jeu').remove();
         this.jeu = creerNouveauJeu('.jeu', niveau);
+
+        if (utilitaires().isDev()) {
+          niveau.fonctionsDev().forEach(function(item, index){
+            $('.boutons-dev').append("<button>" + item.etiquetteBouton() + "</button>").click(function() { item.action(); });
+          });
+        }
 
         $('.panneau-jeu .instructions .texte').html(niveau.instructions());
         $('.panneau-jeu .nombre-de-vies').html(niveau.vies());

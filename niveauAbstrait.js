@@ -41,6 +41,10 @@ function niveauAbstrait() {
 
     audio: null,
 
+    fonctionsDev: function() {
+      return [];
+    },
+
     commencerMusique: function(){
       musique().play(this.getMusique())
     },

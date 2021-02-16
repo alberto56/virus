@@ -19,6 +19,12 @@ var Niveau1Factory = (function () {
     objet.niveauPrecedent = function(){
       return false;
     };
+    objet.fonctionsDev = function() {
+      return [
+        fonctionDevGagnerNiveau(this),
+        fonctionDevPerdreNiveau(this)
+      ];
+    };
     objet.preparer = function(jeu) {
       this.objectifs = [
         objectifTemps(this),
