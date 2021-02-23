@@ -10,6 +10,13 @@ var Niveau1Factory = (function () {
     objet.asymptomatique = function(){
       return 0;
     };
+    objet.gagner = function() {
+      if (this.objectifs.length == 0) {
+        alert("Le " + this.getNom() + " n'a pas d'objectif");
+        return;
+      }
+      this.objectifs[0].continuerJeu();
+    };
     objet.niveauSuivant = function(){
       return niveau2();
     };
@@ -29,7 +36,7 @@ var Niveau1Factory = (function () {
       this.objectifs = [
         objectifTemps(this),
       ];
-        controlleur().creerObstaclesrebords(this, 75);
+      controlleur().creerObstaclesrebords(this, 75);
     };
     objet.nombredePoints = function(){
       return 66;

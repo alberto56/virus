@@ -51,6 +51,7 @@ var ControlleurFactory = (function () {
         effetsSonores().play('audio/OldSchool44.wav');
         musique().pause();
         var that = this;
+          $('.game-over .bouton-prochain-niveau').hide()
         setTimeout(function() {
           var that2 = that;
 

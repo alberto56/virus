@@ -14,6 +14,13 @@ function niveauAbstrait() {
       controlleur().associerBoutons();
     },
 
+    gagner: function() {
+    },
+
+    perdre: function() {
+      ControlleurFactory.instance().gameOver();
+    },
+
     statutAccessible: false,
 
     getMusique: function() {

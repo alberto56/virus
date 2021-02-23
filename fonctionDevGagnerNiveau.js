@@ -1,12 +1,12 @@
 function fonctionDevGagnerNiveau(niveau) {
-  var objet = Object.create(fonctionDevAbstrait());
+  var objet = Object.create(fonctionDevAbstrait(niveau));
 
   objet.etiquetteBouton = function() {
     return "Gagner niveau";
   };
 
   objet.action = function() {
-    alert('Gagner niveau');
+    this.niveau.gagner();
   };
 
   return objet;

@@ -31,7 +31,7 @@ var Niveau5Factory = (function () {
       creerCollectible(jeu, this).bouger($('.panneau-jeu'));
       creerCollectible(jeu, this).bouger($('.panneau-jeu'));
       objet.objectifs = [
-        objet.objectifCollectibles
+        // objet.objectifCollectibles
       ];
     };
 
