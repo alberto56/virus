@@ -8,11 +8,11 @@ function accepterBarreEspacement() {
        // user has pressed space
        if (utilitaires().getEnPause()) {
          utilitaires().setEnPause(false);
-         alert("Votre jeu n'est plus en pause");
+         $('.alerte-en-pause').hide();
        }
        else {
          utilitaires().setEnPause(true);
-         alert('Votre jeu est en pause');
+         $('.alerte-en-pause').show();
        }
      }
   });
