@@ -2,6 +2,8 @@ function creerPoint(jeu, niveau) {
   return {
     attente: 50,
 
+    random: Math.random(),
+
     retire: false,
 
     largeur: function() {
@@ -136,8 +138,33 @@ function creerPoint(jeu, niveau) {
     },
 
     choisirDestination: function() {
+      if (this.objet.hasClass('intelligent')) {
+        this.choisirDestinationIntelligente();
+      }
+      else {
+        this.choisirDestinationAleatoire();
+      }
+    },
+
+    choisirDestinationAleatoire: function() {
       this.objet.attr('data-dest-v', this.pointVerticalAleatoire());
       this.objet.attr('data-dest-h', this.pointHorizontalAleatoire());
+    },
+
+    choisirDestinationIntelligente: function() {
+      // Il va toujours choisir le premier joueur s'il y en plusieurs!
+      var joueurs = $('[data-joueur=oui]');
+      if (joueurs.length) {
+        this.objet.attr('data-dest-v', joueurs.position().top + utilitaires().random(-100, 100));
+        this.objet.attr('data-dest-h', joueurs.position().left + utilitaires().random(-100, 100));
+      }
+      else {
+        this.choisirDestinationAleatoire();
+      }
+    },
+
+    randomRandom: function(from, to) {
+      return utilitaires().random(from * this.random, to * this.random);
     },
 
     pointVerticalAleatoire: function() {
@@ -212,8 +239,7 @@ function creerPoint(jeu, niveau) {
           if (this.objet.attr('data-invincible') == 'non') {
             this.devenirInvincible(3000);
             effetsSonores().play(this.effetSonore())
-            nombredevies=utilitaires().getInfo('nombre-de-vies');
-            utilitaires().setInfo('nombre-de-vies', --nombredevies)
+            var nombredevies = utilitaires().modifierNombreDeVies(-1)
             if (nombredevies==0)  {
               $('.point').attr('data-vitesse', 0);
               ControlleurFactory.instance().gameOver();
@@ -227,6 +253,14 @@ function creerPoint(jeu, niveau) {
           this.objet.attr('data-infecte', 'oui');
           return true;
         }
+      }
+      return false;
+    },
+
+    devenirIntelligent: function(chance) {
+      if (Math.random() < chance) {
+        // ajouter classe intelligent.
+        this.objet.addClass('intelligent');
       }
       return false;
     },

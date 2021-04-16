@@ -15,6 +15,12 @@ function utilitaires() {
       }
     },
 
+    random: function(from, to) {
+      var range = to - from;
+      var rand_in_range = Math.round(Math.random() * range);
+      return rand_in_range + from;
+    },
+
     /**
      * Calculer une destination horizontale reelle.
      *
@@ -210,6 +216,13 @@ function utilitaires() {
 
     chiffreEntreDeuxChiffres: function (depart, arrivee, obstacle) {
       return obstacle >= Math.min(depart, arrivee) && obstacle <= Math.max(depart, arrivee);
+    },
+
+    modifierNombreDeVies: function (montant) {
+      nombredevies = utilitaires().getInfo('nombre-de-vies');
+      var nombredevies_modifie = parseInt(nombredevies) + montant;
+      utilitaires().setInfo('nombre-de-vies', nombredevies_modifie);
+      return nombredevies_modifie;
     },
 
     trouverVoisins: function(top, left, rayon, identifiant = '.point[data-infecte=non]') {

@@ -19,7 +19,11 @@ var Niveau4Factory = (function () {
     objet.infectes = function(){
       return 20;
     };
+    objet.pourcentageIntelligents = function(){
+      return 5/100;
+    };
     objet.preparer = function(jeu) {
+      creerCollectibleAvancerTemps(jeu, objet);
       creerCollectibleAvancerTemps(jeu, objet);
       this.objectifs = [
         objectifTemps(this),

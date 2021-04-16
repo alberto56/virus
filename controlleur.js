@@ -167,6 +167,7 @@ var ControlleurFactory = (function () {
           var point = creerPoint(this.jeu, niveau);
           point.creerNouveau();
           point.placerAleatoire();
+          point.devenirIntelligent(niveau.pourcentageIntelligents());
           if (i < niveau.infectes()) {
             point.infecter(100/100);
           }

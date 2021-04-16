@@ -6,7 +6,7 @@ function objectifCollectibles(niveau) {
    */
   objet.recalculer = function() {
     // Calculer le nombre de balises "collectible" dans le panneau.
-    var quantite = $('.panneau-jeu .collectible').length;
+    var quantite = $('.panneau-jeu .collectible-objectif').length;
     utilitaires().setInfo('collectibles-restants', quantite);
       if(quantite <= 0){
         this.continuerJeu();
@@ -15,7 +15,7 @@ function objectifCollectibles(niveau) {
 
   objet.activer = function() {
 
-    $('.espace-objectif').append('<span>VOUS DEVEZ PRENDRE <span class="collectibles-restants">' + $('.panneau-jeu .collectible').length + '</span> COLLECTIBLES POUR GAGNER. </span>');
+    $('.espace-objectif').append('<span>VOUS DEVEZ PRENDRE <span class="collectibles-restants">' + $('.panneau-jeu .collectible-objectif').length + '</span> COLLECTIBLES POUR GAGNER. </span>');
   }
 
   return objet;

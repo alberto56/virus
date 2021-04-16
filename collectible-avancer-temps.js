@@ -11,5 +11,7 @@ function creerCollectibleAvancerTemps(jeu, niveau, temps = 5) {
 
   objet.bouger($('.panneau-jeu'));
 
+  objet.objet.addClass("collectible-avancer-temps")
+
   return objet;
 }

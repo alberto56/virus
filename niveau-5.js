@@ -22,16 +22,20 @@ var Niveau5Factory = (function () {
     objet.preparer = function(jeu) {
       // Ne rien faire, d'autres niveaux peuvent, par exemple, ajouter des
       // nouvelles fonctionalites comme des collectibles ou autres...
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
-      creerCollectible(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleObjectif(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleGuerir(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleGuerir(jeu, this).bouger($('.panneau-jeu'));
+      creerCollectibleGuerir(jeu, this).bouger($('.panneau-jeu'));
+      objet.objectifCollectibles = objectifCollectibles(this);
       objet.objectifs = [
-        // objet.objectifCollectibles
+        objet.objectifCollectibles
       ];
     };
 

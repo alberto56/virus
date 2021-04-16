@@ -55,6 +55,12 @@
 .collectible {
   background: blue;
 }
+.collectible-avancer-temps {
+  background: DarkOrange;
+}
+.collectible-guerir {
+  background: Fuchsia;
+}
 .infos {
   position: absolute;
   bottom: 0;
@@ -121,4 +127,7 @@
   text-align: center;
   top: 46%;
   color: white;
+}
+.intelligent {
+  border: 2px black solid;
 }

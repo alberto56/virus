@@ -9,6 +9,10 @@ function niveauAbstrait() {
       });
     },
 
+    pourcentageIntelligents: function() {
+      return 0;
+    },
+
     setStatutAccessible: function(valeur) {
       this.statutAccessible = valeur;
       controlleur().associerBoutons();

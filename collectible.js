@@ -25,6 +25,7 @@ function creerCollectible(jeu, niveau) {
     var that=this
     utilitaires().trouverVoisins(top, left, this.rayon_infection, '.point[data-joueur=oui]').each(function() {
       effetsSonores().play(that.effetSonore())
+      that.activer()
       that.remove()
       niveau.collectibleretire()
     });
