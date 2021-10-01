@@ -48,6 +48,7 @@ var ControlleurFactory = (function () {
 
       gameOver: function() {
         this.montrerPanneau('game-over');
+        this.niveauActuel.perdre();
         effetsSonores().play('audio/OldSchool44.wav');
         musique().pause();
         var that = this;
@@ -83,6 +84,10 @@ var ControlleurFactory = (function () {
         $('.bouton-niveau-tutoriel').click(function() {
           $('.ecran-de-bienvenue .jeu').remove();
           that.commencerNiveau(niveauTutoriel1());
+        });
+        $('.bouton-niveau-creation').click(function() {
+          $('.ecran-de-bienvenue .jeu').remove();
+          that.commencerNiveau(niveauCreation());
         });
         $('.bouton-menu').click(function() {
           that.montrerEcranBienvenue();

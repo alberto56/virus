@@ -15,6 +15,12 @@ function utilitaires() {
       }
     },
 
+    objetExiste: function(obj) {
+      // Voir https://stackoverflow.com/questions/3086068/how-do-i-check-whether-a-jquery-element-is-in-the-dom
+
+      return obj.closest(document.documentElement).length;
+    },
+
     random: function(from, to) {
       var range = to - from;
       var rand_in_range = Math.round(Math.random() * range);

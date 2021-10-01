@@ -19,10 +19,15 @@ function niveauAbstrait() {
     },
 
     gagner: function() {
+      this.terminerNiveau();
     },
 
     perdre: function() {
       ControlleurFactory.instance().gameOver();
+      this.terminerNiveau();
+    },
+
+    terminerNiveau: function() {
     },
 
     statutAccessible: false,

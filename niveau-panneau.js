@@ -1,7 +1,7 @@
 var NiveauPanneauFactory = (function () {
   var instance;
 
-  function createInstance() {
+  function createInstance(identifiant) {
     var objet = Object.create(niveau1(true));
 
     objet.indentifiant = identifiant;
@@ -38,18 +38,18 @@ var NiveauPanneauFactory = (function () {
   }
 
   return {
-    instance: function (create_new) {
+    instance: function (create_new, identifiant) {
       if (!instance) {
-        instance = createInstance();
+        instance = createInstance(identifiant);
       }
       if (create_new) {
-        return createInstance();
+        return createInstance(identifiant);
       }
       return instance;
     }
   };
 })();
 
-function niveauPanneau(create_new = false) {
-  return NiveauPanneauFactory.instance(create_new);
+function niveauPanneau(create_new = false, identifiant) {
+  return NiveauPanneauFactory.instance(create_new, identifiant);
 }

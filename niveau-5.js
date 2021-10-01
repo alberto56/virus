@@ -8,7 +8,7 @@ var Niveau5Factory = (function () {
       return "Niveau 5";
     };
     objet.niveauSuivant = function() {
-      return niveauPanneau('panneau-final');
+      return niveauPanneau(true, 'panneau-final');
     };
     objet.niveauPrecedent = function() {
       return niveau4();

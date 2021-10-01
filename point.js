@@ -234,6 +234,7 @@ function creerPoint(jeu, niveau) {
     },
 
     infecter: function(chance) {
+
       if (Math.random() < chance) {
         if (this.objet.attr('data-joueur') == 'oui') {
           if (this.objet.attr('data-invincible') == 'non') {
@@ -297,7 +298,8 @@ function creerPoint(jeu, niveau) {
 
         this.infecterVoisins();
       }
-      if (contexte.is(":visible") && !this.retire) {
+
+      if (contexte.is(":visible") && !this.retire && utilitaires().objetExiste(this.objet)) {
         var that = this;
         setTimeout(function() {
           that.bouger(contexte);
