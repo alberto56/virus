@@ -3,7 +3,7 @@ backend:
   repo: alberto56/virus
   branch: master
   base_url: https://suresh-issue-82.dcycleproject.org
-  auth_endpoint: /auth/github/repo/6946e4017c6e2b059bec66f3
+  auth_endpoint: /auth/github/repo/694f515f18f56cc358266551
 media_folder: static/uploads
 public_folder: /uploads
 collections:
